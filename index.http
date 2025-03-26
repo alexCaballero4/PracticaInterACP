@@ -11,9 +11,9 @@ Content-Type: application/json
 
 ###
 POST http://localhost:3000/api/user/validation
-Authorization: Bearer TU_TOKEN_JWT
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTNkZjM1NDEwNzI0MThlZTlkMTY1MiIsImVtYWlsIjoiYWxleEBnbWFpbC5jb20iLCJpYXQiOjE3NDI5ODcwNjEsImV4cCI6MTc0Mjk5MDY2MX0.32aYZxHfnbIzlhH3_7ixvIlfJuNBWHz_zftJ_3MscLs
 Content-Type: application/json
 
 {
-  "code": "491117"
+  "code": "645103"
 }
