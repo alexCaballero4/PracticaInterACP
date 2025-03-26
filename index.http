@@ -1,13 +1,19 @@
 GET http://localhost:3000/api
 
 ###
-POST http://localhost:3000/api/mail
+POST http://localhost:3000/api/user/register
 Content-Type: application/json
-//Authorization: 1//04n7LahFYGAzvCgYIARAAGAQSNwF-L9Irv6YOW7rt4jo0CeGmgv8dj1-PgDx6cmgw3t_hisr2qXKObobh2qbEuwFMXT8MsduZAQA
 
 {
-  "subject": "Asunto del correo",
-  "text": "Imbecil",
-  "to": "angellopezpaparella2004@gmail.com",
-  "from": "alexcaballero846@gmail.com"
+  "email": "alex@gmail.com",
+  "password": "mipasswordsegura"
+}
+
+###
+POST http://localhost:3000/api/user/validation
+Authorization: Bearer TU_TOKEN_JWT
+Content-Type: application/json
+
+{
+  "code": "491117"
 }
