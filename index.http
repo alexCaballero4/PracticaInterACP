@@ -1,1 +1,13 @@
 GET http://localhost:3000/api
+
+###
+POST http://localhost:3000/api/mail
+Content-Type: application/json
+//Authorization: 1//04n7LahFYGAzvCgYIARAAGAQSNwF-L9Irv6YOW7rt4jo0CeGmgv8dj1-PgDx6cmgw3t_hisr2qXKObobh2qbEuwFMXT8MsduZAQA
+
+{
+  "subject": "Asunto del correo",
+  "text": "Imbecil",
+  "to": "angellopezpaparella2004@gmail.com",
+  "from": "alexcaballero846@gmail.com"
+}

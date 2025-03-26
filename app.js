@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 require ('dotenv').config()
 
-const routers = require('./routes')
+const routers = require('./routes/')
 
 const dbConnect = require('./config/mongo.js')
 
