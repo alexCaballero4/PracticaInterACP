@@ -1,0 +1,29 @@
+GET http://localhost:3000/api
+
+### Registro Valido
+POST http://localhost:3000/api/user/register
+Content-Type: application/json
+
+{
+  "email": "prueba6@gmail.com",
+  "password": "contraseña123"
+}
+
+### Validacion
+POST http://localhost:3000/api/user/validation
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTU5ZjJjYzE0ODYwYmRlMDkxYTQ2ZCIsImVtYWlsIjoicHJ1ZWJhNkBnbWFpbC5jb20iLCJpYXQiOjE3NDMxMDE3NDAsImV4cCI6MTc0MzEwNTM0MH0.Tqj0m_6Dvir_p_zwfoj3_BdDTmOiEC28Q7fPYKCNW84
+Content-Type: application/json
+
+{
+  "code": "935727"
+}
+
+###
+POST http://localhost:3000/api/user/login
+Content-Type: application/json
+
+{
+  "email": "prueba6@gmail.com",
+  "password": "contraseña123"
+}
+
