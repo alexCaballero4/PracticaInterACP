@@ -69,4 +69,14 @@ Content-Type: application/json
   "esAutonomo": true
 }
 
+### Subir logo a Pinata
+PATCH http://localhost:3000/api/user/logo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTdlZDlhNTYxNGIzYzllYzk0MWM3MyIsImVtYWlsIjoicHJ1ZWJhNUBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNTQ5OTEsImV4cCI6MTc0MzI1ODU5MX0.uYVdueiL_YWjj-gYJxxdjEuw6zJMWrrc1glzbSbGGIY
+Content-Type: multipart/form-data; boundary=boundary123
 
+--boundary123
+Content-Disposition: form-data; name="logo"; filename="Logo-U-tad 1.png"
+Content-Type: image/png
+
+< ../images/Logo-U-tad 1.png
+--boundary123--

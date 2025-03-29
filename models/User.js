@@ -26,15 +26,10 @@ const userSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-  nombre: {
-    type: String
-  },
-  apellidos: {
-    type: String
-  },
-  nif: {
-    type: String
-  },
+  nombre: String,
+  apellidos: String,
+  nif: String,
+  logo: String,
   company: {
     name: String,
     cif: {

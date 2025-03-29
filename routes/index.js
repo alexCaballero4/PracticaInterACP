@@ -5,7 +5,8 @@ const { register, validateEmail, loginUser } = require('../controllers/auth');
 const { registerValidator, validateEmailCode, loginValidator } = require('../validators/auth');
 const { updateProfile, updateCompany} = require('../controllers/user');
 const { personalDataValidator, companyDataValidator } = require('../validators/user')
-
+const { uploadMiddlewareMemory } = require('../middleware/storageMiddleware');
+const { updateLogo } = require('../controllers/storage');
 
 router.get('/', (req, res) => {
     res.send('API funcionando correctamente');
@@ -20,5 +21,7 @@ router.post('/user/login', loginValidator, loginUser);
 router.put('/user/register', authMiddleware, personalDataValidator, updateProfile);
 
 router.patch('/user/company', authMiddleware, companyDataValidator, updateCompany);
+
+router.patch('/user/logo', authMiddleware, uploadMiddlewareMemory.single('logo'), updateLogo);
 
 module.exports = router;
