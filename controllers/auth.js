@@ -31,6 +31,9 @@ const register = async (req, res) => {
 
         const token = generateToken(user);
 
+        console.log('Token registro generado:', token);
+        console.log('Código de verificación:', code);
+
         res.status(200).json({
             user: {
                 email: user.email,
@@ -97,7 +100,7 @@ const loginUser = async (req, res) => {
 
         if (user.status !== 'validated') {
             return handleHttpError(res, 'La cuenta no ha sido validada aún', 401);
-        }         
+        }
 
         const isMatch = await comparePassword(password, user.password);
         if (!isMatch) {
@@ -105,6 +108,8 @@ const loginUser = async (req, res) => {
         }
 
         const token = generateToken(user);
+
+        console.log('Token login generado:', token);
 
         res.status(200).json({
             user: {
@@ -122,31 +127,4 @@ const loginUser = async (req, res) => {
     }
 };
 
-const updateProfile = async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return handleHttpError(res, 'Datos inválidos', 400);
-    }
-
-    const { nombre, apellidos, nif } = req.body;
-    const userId = req.user.id;
-
-    try {
-        const user = await User.findById(userId);
-        if (!user) return handleHttpError(res, 'Usuario no encontrado', 404);
-
-        user.nombre = nombre;
-        user.apellidos = apellidos;
-        user.nif = nif;
-
-        await user.save();
-
-        return res.status(200).json({ message: 'Datos personales actualizados correctamente' });
-
-    } catch (err) {
-        console.error('Error al actualizar datos personales:', err);
-        return handleHttpError(res);
-    }
-};
-
-module.exports = { register, validateEmail, loginUser, updateProfile };
+module.exports = { register, validateEmail, loginUser };

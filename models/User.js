@@ -36,9 +36,17 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   company: {
-    nombre: String,
-    cif: String,
-    direccion: String
+    name: String,
+    cif: {
+      type: String,
+      unique: true,
+      sparse: true
+    },
+    street: String,
+    number: Number,
+    postal: Number,
+    city: String,
+    province: String
   }
 }, { timestamps: true });
 

@@ -5,17 +5,17 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-  "email": "prueba1@gmail.com",
+  "email": "prueba5@gmail.com",
   "password": "contraseña123"
 }
 
 ### Validacion
 POST http://localhost:3000/api/user/validation
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTVhN2IzYmJlNDJkYzY5NWNiMDM5MiIsImVtYWlsIjoicHJ1ZWJhMUBnbWFpbC5jb20iLCJpYXQiOjE3NDMxMDM5MjMsImV4cCI6MTc0MzEwNzUyM30.7sBzLcB56tLdyNqoxdf5bJOATsz5i3z7qpB07siPYK0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTdlZDlhNTYxNGIzYzllYzk0MWM3MyIsImVtYWlsIjoicHJ1ZWJhNUBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNTI4OTAsImV4cCI6MTc0MzI1NjQ5MH0.MBMS4BiYUY9037dqiUvKDTux4jJF68QUcvXOWmxSioM
 Content-Type: application/json
 
 {
-  "code": "501806"
+  "code": "169459"
 }
 
 ### Login
@@ -23,19 +23,50 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-  "email": "prueba1@gmail.com",
+  "email": "prueba5@gmail.com",
   "password": "contraseña123"
 }
 
 ### Onboarding - Datos personales
 PUT http://localhost:3000/api/user/register
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTVhNzBjMDU1ZDU4OTgwMTI5YmNiNSIsImVtYWlsIjoiYWxleGNhYmFsbGVybzg0NkBnbWFpbC5jb20iLCJpYXQiOjE3NDMxMDM4MDcsImV4cCI6MTc0MzEwNzQwN30.Y5xcbr8mFNmWk2iihSZgBtb0O9mOL17qgdf0mLehAdk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTdlZDlhNTYxNGIzYzllYzk0MWM3MyIsImVtYWlsIjoicHJ1ZWJhNUBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNTI5MTYsImV4cCI6MTc0MzI1NjUxNn0.MY_teuCIVcRaN9zaVsiNlVp6yn7TgJHfPqb2aOGMMaQ
 Content-Type: application/json
 
 {
-  "nombre": "Alejandro",
-  "apellidos": "Caballero Poveda",
-  "nif": "12345678A"
+  "nombre": "Carlos",
+  "apellidos": "Alonso Parera",
+  "nif": "12345678D"
+}
+
+### Onboarding - Empresa normal
+PATCH http://localhost:3000/api/user/company
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTdlZDlhNTYxNGIzYzllYzk0MWM3MyIsImVtYWlsIjoicHJ1ZWJhNUBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNTI5MTYsImV4cCI6MTc0MzI1NjUxNn0.MY_teuCIVcRaN9zaVsiNlVp6yn7TgJHfPqb2aOGMMaQ
+Content-Type: application/json
+
+{
+  "name": "Servitop, SL.",
+  "cif": "B12345678",
+  "street": "Carlos V",
+  "number": 22,
+  "postal": 28936,
+  "city": "Móstoles",
+  "province": "Madrid",
+  "esAutonomo": false
+}
+
+
+### Onboarding - Autonomo
+PATCH http://localhost:3000/api/user/company
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTdlOTQ5MzMzNTk1NjE4MGMxYjIxOSIsImVtYWlsIjoicHJ1ZWJhM0BnbWFpbC5jb20iLCJpYXQiOjE3NDMyNTE4MzAsImV4cCI6MTc0MzI1NTQzMH0.sCDqM4wfOTI3v3QPvBIOejxKm3QPVuEtLAliyqUJ9RA
+Content-Type: application/json
+
+{
+  "street": "Calle Victoria 33",
+  "number": 7,
+  "postal": 28922,
+  "city": "Alcorcón",
+  "province": "Madrid",
+  "esAutonomo": true
 }
 
 
