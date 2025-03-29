@@ -64,4 +64,64 @@ const updateCompany = async (req, res) => {
     }
 };
 
-module.exports = { updateProfile, updateCompany };
+const getUser = async (req, res) => {
+    const userId = req.user.id;
+
+    try {
+        const user = await User.findById(userId).lean(); // .lean() para devolver objeto plano
+        if (!user) return handleHttpError(res, 'Usuario no encontrado', 404);
+
+        const response = {
+            _id: user._id,
+            email: user.email,
+            emailCode: user.code,
+            status: user.status === 'validated' ? 1 : 0,
+            role: user.role,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt,
+            name: user.nombre,
+            surnames: user.apellidos,
+            nif: user.nif,
+            logo: user.logo || null,
+            address: user.company
+                ? {
+                    street: user.company.street,
+                    number: user.company.number,
+                    postal: user.company.postal,
+                    city: user.company.city,
+                    province: user.company.province
+                }
+                : null,
+            company: user.company || null
+        };
+
+        res.status(200).json(response);
+    } catch (err) {
+        console.error('Error al obtener el usuario:', err);
+        return handleHttpError(res);
+    }
+};
+
+const deleteUser = async (req, res) => {
+    const userId = req.user.id;
+    const isSoftDelete = req.query.soft !== 'false'; // por defecto es true
+
+    try {
+        const user = await User.findById(userId);
+        if (!user) return handleHttpError(res, 'Usuario no encontrado', 404);
+
+        if (isSoftDelete) {
+            user.status = 'deleted';
+            await user.save();
+            return res.status(200).json({ message: 'Usuario marcado como eliminado (soft delete)' });
+        } else {
+            await User.deleteOne({ _id: userId });
+            return res.status(200).json({ message: 'Usuario eliminado permanentemente (hard delete)' });
+        }
+    } catch (err) {
+        console.error('Error al eliminar usuario:', err);
+        return handleHttpError(res);
+    }
+};
+
+module.exports = { updateProfile, updateCompany, getUser, deleteUser };

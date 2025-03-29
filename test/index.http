@@ -5,17 +5,17 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-  "email": "prueba5@gmail.com",
+  "email": "prueba6@gmail.com",
   "password": "contraseña123"
 }
 
 ### Validacion
 POST http://localhost:3000/api/user/validation
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTdlZDlhNTYxNGIzYzllYzk0MWM3MyIsImVtYWlsIjoicHJ1ZWJhNUBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNTI4OTAsImV4cCI6MTc0MzI1NjQ5MH0.MBMS4BiYUY9037dqiUvKDTux4jJF68QUcvXOWmxSioM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTgyOTEyN2FiMDY1N2E1YTBlYzAxNSIsImVtYWlsIjoicHJ1ZWJhNkBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNjgxMTUsImV4cCI6MTc0MzI3MTcxNX0.I4ADhVYRDdPWMU9_On5a6-CaWk20EtvbLKQGvskDSuE
 Content-Type: application/json
 
 {
-  "code": "169459"
+  "code": "192451"
 }
 
 ### Login
@@ -23,18 +23,18 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-  "email": "prueba5@gmail.com",
+  "email": "prueba6@gmail.com",
   "password": "contraseña123"
 }
 
 ### Onboarding - Datos personales
 PUT http://localhost:3000/api/user/register
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTdlZDlhNTYxNGIzYzllYzk0MWM3MyIsImVtYWlsIjoicHJ1ZWJhNUBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNTI5MTYsImV4cCI6MTc0MzI1NjUxNn0.MY_teuCIVcRaN9zaVsiNlVp6yn7TgJHfPqb2aOGMMaQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTgyOTEyN2FiMDY1N2E1YTBlYzAxNSIsImVtYWlsIjoicHJ1ZWJhNkBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNjgxNDEsImV4cCI6MTc0MzI3MTc0MX0.P85l-iVS7jOomgxRHxLaBI3zF-xeZO0kH3lIDtvg15c
 Content-Type: application/json
 
 {
-  "nombre": "Carlos",
-  "apellidos": "Alonso Parera",
+  "nombre": "Mario",
+  "apellidos": "Casas Parera",
   "nif": "12345678D"
 }
 
@@ -57,21 +57,21 @@ Content-Type: application/json
 
 ### Onboarding - Autonomo
 PATCH http://localhost:3000/api/user/company
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTdlOTQ5MzMzNTk1NjE4MGMxYjIxOSIsImVtYWlsIjoicHJ1ZWJhM0BnbWFpbC5jb20iLCJpYXQiOjE3NDMyNTE4MzAsImV4cCI6MTc0MzI1NTQzMH0.sCDqM4wfOTI3v3QPvBIOejxKm3QPVuEtLAliyqUJ9RA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTgyOTEyN2FiMDY1N2E1YTBlYzAxNSIsImVtYWlsIjoicHJ1ZWJhNkBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNjgxNDEsImV4cCI6MTc0MzI3MTc0MX0.P85l-iVS7jOomgxRHxLaBI3zF-xeZO0kH3lIDtvg15c
 Content-Type: application/json
 
 {
-  "street": "Calle Victoria 33",
-  "number": 7,
-  "postal": 28922,
-  "city": "Alcorcón",
+  "street": "Calle Houses 33",
+  "number": 69,
+  "postal": 28232,
+  "city": "Las Rozas",
   "province": "Madrid",
   "esAutonomo": true
 }
 
 ### Subir logo a Pinata
 PATCH http://localhost:3000/api/user/logo
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTdlZDlhNTYxNGIzYzllYzk0MWM3MyIsImVtYWlsIjoicHJ1ZWJhNUBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNTQ5OTEsImV4cCI6MTc0MzI1ODU5MX0.uYVdueiL_YWjj-gYJxxdjEuw6zJMWrrc1glzbSbGGIY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTgyOTEyN2FiMDY1N2E1YTBlYzAxNSIsImVtYWlsIjoicHJ1ZWJhNkBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNjgxNDEsImV4cCI6MTc0MzI3MTc0MX0.P85l-iVS7jOomgxRHxLaBI3zF-xeZO0kH3lIDtvg15c
 Content-Type: multipart/form-data; boundary=boundary123
 
 --boundary123
@@ -80,3 +80,16 @@ Content-Type: image/png
 
 < ../images/Logo-U-tad 1.png
 --boundary123--
+
+### GET datos del usuario
+GET http://localhost:3000/api/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTgyOTEyN2FiMDY1N2E1YTBlYzAxNSIsImVtYWlsIjoicHJ1ZWJhNkBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNjgxNDEsImV4cCI6MTc0MzI3MTc0MX0.P85l-iVS7jOomgxRHxLaBI3zF-xeZO0kH3lIDtvg15c
+
+### Soft delete
+DELETE http://localhost:3000/api/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTgyOTEyN2FiMDY1N2E1YTBlYzAxNSIsImVtYWlsIjoicHJ1ZWJhNkBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNjgxNDEsImV4cCI6MTc0MzI3MTc0MX0.P85l-iVS7jOomgxRHxLaBI3zF-xeZO0kH3lIDtvg15c
+
+### Hard delete
+DELETE http://localhost:3000/api/user?soft=false
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTgyOTEyN2FiMDY1N2E1YTBlYzAxNSIsImVtYWlsIjoicHJ1ZWJhNkBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNjgxNDEsImV4cCI6MTc0MzI3MTc0MX0.P85l-iVS7jOomgxRHxLaBI3zF-xeZO0kH3lIDtvg15c
+

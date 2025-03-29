@@ -3,7 +3,7 @@ const router = express.Router();
 const authMiddleware = require('../middleware/authMiddleware');
 const { register, validateEmail, loginUser } = require('../controllers/auth');
 const { registerValidator, validateEmailCode, loginValidator } = require('../validators/auth');
-const { updateProfile, updateCompany} = require('../controllers/user');
+const { updateProfile, updateCompany, getUser, deleteUser} = require('../controllers/user');
 const { personalDataValidator, companyDataValidator } = require('../validators/user')
 const { uploadMiddlewareMemory } = require('../middleware/storageMiddleware');
 const { updateLogo } = require('../controllers/storage');
@@ -23,5 +23,9 @@ router.put('/user/register', authMiddleware, personalDataValidator, updateProfil
 router.patch('/user/company', authMiddleware, companyDataValidator, updateCompany);
 
 router.patch('/user/logo', authMiddleware, uploadMiddlewareMemory.single('logo'), updateLogo);
+
+router.get('/user', authMiddleware, getUser);
+
+router.delete('/user', authMiddleware, deleteUser);
 
 module.exports = router;
