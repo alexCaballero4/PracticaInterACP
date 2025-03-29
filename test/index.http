@@ -5,25 +5,37 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-  "email": "prueba6@gmail.com",
+  "email": "prueba1@gmail.com",
   "password": "contraseña123"
 }
 
 ### Validacion
 POST http://localhost:3000/api/user/validation
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTU5ZjJjYzE0ODYwYmRlMDkxYTQ2ZCIsImVtYWlsIjoicHJ1ZWJhNkBnbWFpbC5jb20iLCJpYXQiOjE3NDMxMDE3NDAsImV4cCI6MTc0MzEwNTM0MH0.Tqj0m_6Dvir_p_zwfoj3_BdDTmOiEC28Q7fPYKCNW84
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTVhN2IzYmJlNDJkYzY5NWNiMDM5MiIsImVtYWlsIjoicHJ1ZWJhMUBnbWFpbC5jb20iLCJpYXQiOjE3NDMxMDM5MjMsImV4cCI6MTc0MzEwNzUyM30.7sBzLcB56tLdyNqoxdf5bJOATsz5i3z7qpB07siPYK0
 Content-Type: application/json
 
 {
-  "code": "935727"
+  "code": "501806"
 }
 
-###
+### Login
 POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-  "email": "prueba6@gmail.com",
+  "email": "prueba1@gmail.com",
   "password": "contraseña123"
 }
+
+### Onboarding - Datos personales
+PUT http://localhost:3000/api/user/register
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTVhNzBjMDU1ZDU4OTgwMTI5YmNiNSIsImVtYWlsIjoiYWxleGNhYmFsbGVybzg0NkBnbWFpbC5jb20iLCJpYXQiOjE3NDMxMDM4MDcsImV4cCI6MTc0MzEwNzQwN30.Y5xcbr8mFNmWk2iihSZgBtb0O9mOL17qgdf0mLehAdk
+Content-Type: application/json
+
+{
+  "nombre": "Alejandro",
+  "apellidos": "Caballero Poveda",
+  "nif": "12345678A"
+}
+
 

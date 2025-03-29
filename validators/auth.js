@@ -20,4 +20,13 @@ const loginValidator = [
         .notEmpty().withMessage('La contraseña es obligatoria'),
 ];
 
-module.exports = { registerValidator, validateEmailCode, loginValidator };
+const personalDataValidator = [
+    check('nombre')
+        .notEmpty().withMessage('El nombre es obligatorio'),
+    check('apellidos')
+        .notEmpty().withMessage('Los apellidos son obligatorios'),
+    check('nif')
+        .matches(/^[0-9]{8}[A-Za-z]$/).withMessage('El NIF debe tener 8 números y una letra'),
+];
+
+module.exports = { registerValidator, validateEmailCode, loginValidator, personalDataValidator };
