@@ -4,6 +4,10 @@ const { handleHttpError } = require('../utils/handleError');
 
 const updateLogo = async (req, res) => {
   try {
+    if (!req.file) {
+      return handleHttpError(res, 'No se ha proporcionado ningún archivo', 400);
+    }
+
     const { buffer, originalname } = req.file;
     const userId = req.user.id;
 
@@ -16,7 +20,8 @@ const updateLogo = async (req, res) => {
     user.logo = ipfs;
     await user.save();
 
-    res.status(200).json({ message: 'Logo actualizado correctamente', logo: ipfs });
+    return res.status(200).json({ message: 'Logo actualizado correctamente', logo: ipfs });
+
   } catch (err) {
     console.error('Error al subir imagen:', err);
     return handleHttpError(res);
