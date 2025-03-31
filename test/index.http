@@ -5,17 +5,17 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-  "email": "prueba6@gmail.com",
+  "email": "prueba8@gmail.com",
   "password": "contraseña123"
 }
 
 ### Validacion
 POST http://localhost:3000/api/user/validation
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTgyOTEyN2FiMDY1N2E1YTBlYzAxNSIsImVtYWlsIjoicHJ1ZWJhNkBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNjgxMTUsImV4cCI6MTc0MzI3MTcxNX0.I4ADhVYRDdPWMU9_On5a6-CaWk20EtvbLKQGvskDSuE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWFlMGJkM2NlOGU5YWU4ZDg5YzU2NCIsImVtYWlsIjoicHJ1ZWJhOEBnbWFpbC5jb20iLCJpYXQiOjE3NDM0NDYyMDUsImV4cCI6MTc0MzQ0OTgwNX0.y_Z9Tz-LrVRIcmjpF65XmbURvysnUHoWaHJUVgy5-0o
 Content-Type: application/json
 
 {
-  "code": "192451"
+  "code": "857263"
 }
 
 ### Login
@@ -23,13 +23,13 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-  "email": "prueba7@gmail.com",
-  "password": "nuevacontraseña123"
+  "email": "prueba8@gmail.com",
+  "password": "contraseña123"
 }
 
 ### Onboarding - Datos personales
 PUT http://localhost:3000/api/user/register
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTkyMWY0M2VjMjA2MjllZjZlYzUxNyIsImVtYWlsIjoicHJ1ZWJhN0BnbWFpbC5jb20iLCJpYXQiOjE3NDMzMzE5MDUsImV4cCI6MTc0MzMzNTUwNX0.jsGW5acJlGwelwbhKdStyB0hRXUTY4VM63u2g3IIQ0Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWFlMGJkM2NlOGU5YWU4ZDg5YzU2NCIsImVtYWlsIjoicHJ1ZWJhOEBnbWFpbC5jb20iLCJpYXQiOjE3NDM0NDYyNDMsImV4cCI6MTc0MzQ0OTg0M30.MqEEzz6pduYu96CzGRqz_BPvgdFlv0XFgVrZT_bsAeo
 Content-Type: application/json
 
 {
@@ -40,16 +40,16 @@ Content-Type: application/json
 
 ### Onboarding - Empresa normal
 PATCH http://localhost:3000/api/user/company
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTdlZDlhNTYxNGIzYzllYzk0MWM3MyIsImVtYWlsIjoicHJ1ZWJhNUBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNTI5MTYsImV4cCI6MTc0MzI1NjUxNn0.MY_teuCIVcRaN9zaVsiNlVp6yn7TgJHfPqb2aOGMMaQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWFlMGJkM2NlOGU5YWU4ZDg5YzU2NCIsImVtYWlsIjoicHJ1ZWJhOEBnbWFpbC5jb20iLCJpYXQiOjE3NDM0NDYyNDMsImV4cCI6MTc0MzQ0OTg0M30.MqEEzz6pduYu96CzGRqz_BPvgdFlv0XFgVrZT_bsAeo
 Content-Type: application/json
 
 {
-  "name": "Servitop, SL.",
-  "cif": "B12345678",
+  "name": "U-tad, SL.",
+  "cif": "J12345678",
   "street": "Carlos V",
   "number": 22,
-  "postal": 28936,
-  "city": "Móstoles",
+  "postal": 28232,
+  "city": "Las Rozas",
   "province": "Madrid",
   "esAutonomo": false
 }
@@ -71,7 +71,7 @@ Content-Type: application/json
 
 ### Subir logo a Pinata
 PATCH http://localhost:3000/api/user/logo
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTkyMWY0M2VjMjA2MjllZjZlYzUxNyIsImVtYWlsIjoicHJ1ZWJhN0BnbWFpbC5jb20iLCJpYXQiOjE3NDMzMzE5MDUsImV4cCI6MTc0MzMzNTUwNX0.jsGW5acJlGwelwbhKdStyB0hRXUTY4VM63u2g3IIQ0Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWFlMGJkM2NlOGU5YWU4ZDg5YzU2NCIsImVtYWlsIjoicHJ1ZWJhOEBnbWFpbC5jb20iLCJpYXQiOjE3NDM0NDYyNDMsImV4cCI6MTc0MzQ0OTg0M30.MqEEzz6pduYu96CzGRqz_BPvgdFlv0XFgVrZT_bsAeo
 Content-Type: multipart/form-data; boundary=boundary123
 
 --boundary123
@@ -83,22 +83,22 @@ Content-Type: image/png
 
 ### GET datos del usuario
 GET http://localhost:3000/api/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTkyMWY0M2VjMjA2MjllZjZlYzUxNyIsImVtYWlsIjoicHJ1ZWJhN0BnbWFpbC5jb20iLCJpYXQiOjE3NDMzMzE5MDUsImV4cCI6MTc0MzMzNTUwNX0.jsGW5acJlGwelwbhKdStyB0hRXUTY4VM63u2g3IIQ0Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWFlMGJkM2NlOGU5YWU4ZDg5YzU2NCIsImVtYWlsIjoicHJ1ZWJhOEBnbWFpbC5jb20iLCJpYXQiOjE3NDM0NDYyNDMsImV4cCI6MTc0MzQ0OTg0M30.MqEEzz6pduYu96CzGRqz_BPvgdFlv0XFgVrZT_bsAeo
 
 ### Soft delete
 DELETE http://localhost:3000/api/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTgyOTEyN2FiMDY1N2E1YTBlYzAxNSIsImVtYWlsIjoicHJ1ZWJhNkBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNjgxNDEsImV4cCI6MTc0MzI3MTc0MX0.P85l-iVS7jOomgxRHxLaBI3zF-xeZO0kH3lIDtvg15c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWFlMGJkM2NlOGU5YWU4ZDg5YzU2NCIsImVtYWlsIjoicHJ1ZWJhOEBnbWFpbC5jb20iLCJpYXQiOjE3NDM0NDYyNDMsImV4cCI6MTc0MzQ0OTg0M30.MqEEzz6pduYu96CzGRqz_BPvgdFlv0XFgVrZT_bsAeo
 
 ### Hard delete
 DELETE http://localhost:3000/api/user?soft=false
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTgyOTEyN2FiMDY1N2E1YTBlYzAxNSIsImVtYWlsIjoicHJ1ZWJhNkBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNjgxNDEsImV4cCI6MTc0MzI3MTc0MX0.P85l-iVS7jOomgxRHxLaBI3zF-xeZO0kH3lIDtvg15c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWFlMGJkM2NlOGU5YWU4ZDg5YzU2NCIsImVtYWlsIjoicHJ1ZWJhOEBnbWFpbC5jb20iLCJpYXQiOjE3NDM0NDYyNDMsImV4cCI6MTc0MzQ0OTg0M30.MqEEzz6pduYu96CzGRqz_BPvgdFlv0XFgVrZT_bsAeo
 
 ### Recuperar contraseña
 POST http://localhost:3000/api/user/recover
 Content-Type: application/json
 
 {
-  "email": "prueba7@gmail.com"
+  "email": "prueba8@gmail.com"
 }
 
 ### Cambiar contraseña tras recuperación
