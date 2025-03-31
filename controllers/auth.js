@@ -107,4 +107,61 @@ const loginUser = async (req, res) => {
     }
 };
 
-module.exports = { register, validateEmail, loginUser };
+const recoverPassword = async (req, res) => {
+    try {
+        const { email } = matchedData(req);
+
+        const user = await User.findOne({ email });
+        if (!user) {
+            return handleHttpError(res, 'Usuario no encontrado', 404);
+        }
+
+        if (user.status !== 'validated') {
+            return handleHttpError(res, 'El usuario no ha validado su email', 409);
+        }
+
+        const code = generateCode();
+        user.code = code;
+        user.attempts = 0;
+        await user.save();
+
+        console.log('Código de recuperación generado:', code);
+
+        res.status(200).json({
+            user: {
+                email: user.email,
+                status: user.status === 'validated' ? 1 : 0,
+                role: user.role,
+                _id: user._id,
+            },
+        });
+    } catch (err) {
+        console.error('Error en recuperación de contraseña:', err);
+        return handleHttpError(res);
+    }
+};
+
+const changePassword = async (req, res) => {
+    try {
+        const { email, code, password } = matchedData(req);
+
+        const user = await User.findOne({ email });
+        if (!user) return handleHttpError(res, 'Usuario no encontrado', 404);
+
+        if (user.code !== code) {
+            return handleHttpError(res, 'Código incorrecto', 422);
+        }
+
+        user.password = await hashPassword(password);
+        user.code = null;
+        await user.save();
+
+        return res.status(200).json({ acknowledged: true });
+    } catch (err) {
+        console.error('Error al cambiar la contraseña:', err);
+        return handleHttpError(res);
+    }
+};
+
+
+module.exports = { register, validateEmail, loginUser, recoverPassword, changePassword };

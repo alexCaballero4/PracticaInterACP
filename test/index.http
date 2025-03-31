@@ -24,7 +24,7 @@ Content-Type: application/json
 
 {
   "email": "prueba7@gmail.com",
-  "password": "contraseña123"
+  "password": "nuevacontraseña123"
 }
 
 ### Onboarding - Datos personales
@@ -92,4 +92,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTgyOTEyN
 ### Hard delete
 DELETE http://localhost:3000/api/user?soft=false
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTgyOTEyN2FiMDY1N2E1YTBlYzAxNSIsImVtYWlsIjoicHJ1ZWJhNkBnbWFpbC5jb20iLCJpYXQiOjE3NDMyNjgxNDEsImV4cCI6MTc0MzI3MTc0MX0.P85l-iVS7jOomgxRHxLaBI3zF-xeZO0kH3lIDtvg15c
+
+### Recuperar contraseña
+POST http://localhost:3000/api/user/recover
+Content-Type: application/json
+
+{
+  "email": "prueba7@gmail.com"
+}
+
+### Cambiar contraseña tras recuperación
+PATCH http://localhost:3000/api/user/password
+Content-Type: application/json
+
+{
+  "email": "prueba7@gmail.com",
+  "code": "448841",
+  "password": "nuevacontraseña123"
+}
 

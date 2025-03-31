@@ -52,5 +52,20 @@ const companyDataValidator = [
         .notEmpty().withMessage('La provincia es obligatoria')
 ];
 
+const recoverValidator = [
+    check('email')
+        .isEmail()
+        .withMessage('Debe ser un email válido'),
+];
 
-module.exports = { registerValidator, validateEmailCode, loginValidator, personalDataValidator, companyDataValidator };
+const changePasswordValidator = [
+    check('email')
+        .isEmail().withMessage('Debe ser un email válido'),
+    check('code')
+        .isLength({ min: 6, max: 6 }).withMessage('El código debe tener 6 dígitos')
+        .isNumeric().withMessage('El código debe ser numérico'),
+    check('password')
+        .isLength({ min: 8 }).withMessage('La contraseña debe tener al menos 8 caracteres'),
+];
+
+module.exports = { registerValidator, validateEmailCode, loginValidator, personalDataValidator, companyDataValidator, recoverValidator, changePasswordValidator };

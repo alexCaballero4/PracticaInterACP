@@ -28,7 +28,7 @@ const updateProfile = async (req, res) => {
 
 const updateCompany = async (req, res) => {
   const errors = validationResult(req);
-  if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() });
+  if (!errors.isEmpty()) return handleHttpError(res, 'Datos inválidos', 422);
 
   const {
     name, cif, street, number, postal, city, province, esAutonomo
