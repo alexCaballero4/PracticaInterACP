@@ -5,17 +5,17 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-  "email": "prueba8@gmail.com",
+  "email": "prueba9@gmail.com",
   "password": "contraseña123"
 }
 
 ### Validacion
 POST http://localhost:3000/api/user/validation
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWFlMGJkM2NlOGU5YWU4ZDg5YzU2NCIsImVtYWlsIjoicHJ1ZWJhOEBnbWFpbC5jb20iLCJpYXQiOjE3NDM0NDYyMDUsImV4cCI6MTc0MzQ0OTgwNX0.y_Z9Tz-LrVRIcmjpF65XmbURvysnUHoWaHJUVgy5-0o
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWQwODg4OTczNGU0MTU4ZDE1ZjJmYiIsImVtYWlsIjoicHJ1ZWJhOUBnbWFpbC5jb20iLCJpYXQiOjE3NDM1ODc0NjQsImV4cCI6MTc0MzU5MTA2NH0.LdlmWhZ2Ln1eH3onHu_6yPEahv4A5ZIjFydKx-5te7o
 Content-Type: application/json
 
 {
-  "code": "857263"
+  "code": "993990"
 }
 
 ### Login
@@ -23,7 +23,7 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-  "email": "prueba8@gmail.com",
+  "email": "prueba9@gmail.com",
   "password": "contraseña123"
 }
 
@@ -83,15 +83,15 @@ Content-Type: image/png
 
 ### GET datos del usuario
 GET http://localhost:3000/api/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWFlMGJkM2NlOGU5YWU4ZDg5YzU2NCIsImVtYWlsIjoicHJ1ZWJhOEBnbWFpbC5jb20iLCJpYXQiOjE3NDM0NDYyNDMsImV4cCI6MTc0MzQ0OTg0M30.MqEEzz6pduYu96CzGRqz_BPvgdFlv0XFgVrZT_bsAeo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWQwODg4OTczNGU0MTU4ZDE1ZjJmYiIsImVtYWlsIjoicHJ1ZWJhOUBnbWFpbC5jb20iLCJpYXQiOjE3NDM1ODc1NzQsImV4cCI6MTc0MzU5MTE3NH0.58c3MpeojndUsN4EIBJ33AnUm-KtInGYRKJcV9FWTes
 
 ### Soft delete
 DELETE http://localhost:3000/api/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWFlMGJkM2NlOGU5YWU4ZDg5YzU2NCIsImVtYWlsIjoicHJ1ZWJhOEBnbWFpbC5jb20iLCJpYXQiOjE3NDM0NDYyNDMsImV4cCI6MTc0MzQ0OTg0M30.MqEEzz6pduYu96CzGRqz_BPvgdFlv0XFgVrZT_bsAeo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWQwODg4OTczNGU0MTU4ZDE1ZjJmYiIsImVtYWlsIjoicHJ1ZWJhOUBnbWFpbC5jb20iLCJpYXQiOjE3NDM1ODc1NzQsImV4cCI6MTc0MzU5MTE3NH0.58c3MpeojndUsN4EIBJ33AnUm-KtInGYRKJcV9FWTes
 
 ### Hard delete
 DELETE http://localhost:3000/api/user?soft=false
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWFlMGJkM2NlOGU5YWU4ZDg5YzU2NCIsImVtYWlsIjoicHJ1ZWJhOEBnbWFpbC5jb20iLCJpYXQiOjE3NDM0NDYyNDMsImV4cCI6MTc0MzQ0OTg0M30.MqEEzz6pduYu96CzGRqz_BPvgdFlv0XFgVrZT_bsAeo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWQwODg4OTczNGU0MTU4ZDE1ZjJmYiIsImVtYWlsIjoicHJ1ZWJhOUBnbWFpbC5jb20iLCJpYXQiOjE3NDM1ODc1NzQsImV4cCI6MTc0MzU5MTE3NH0.58c3MpeojndUsN4EIBJ33AnUm-KtInGYRKJcV9FWTes
 
 ### Recuperar contraseña
 POST http://localhost:3000/api/user/recover
