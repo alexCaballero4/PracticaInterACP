@@ -11,11 +11,11 @@ Content-Type: application/json
 
 ### Validacion
 POST http://localhost:3000/api/user/validation
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWQwODg4OTczNGU0MTU4ZDE1ZjJmYiIsImVtYWlsIjoicHJ1ZWJhOUBnbWFpbC5jb20iLCJpYXQiOjE3NDM1ODc0NjQsImV4cCI6MTc0MzU5MTA2NH0.LdlmWhZ2Ln1eH3onHu_6yPEahv4A5ZIjFydKx-5te7o
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Zjc5YmI0YzMzMTNmODU0YjM5YTk1YyIsImVtYWlsIjoicHJ1ZWJhOUBnbWFpbC5jb20iLCJpYXQiOjE3NDQyODA1MDAsImV4cCI6MTc0NDI4NDEwMH0.hVzOL_wjqjoL7aSGKVW37wFNCFhbz2_1JCECLaIyfME
 Content-Type: application/json
 
 {
-  "code": "993990"
+  "code": "601276"
 }
 
 ### Login
@@ -23,7 +23,7 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-  "email": "prueba9@gmail.com",
+  "email": "prueba7@gmail.com",
   "password": "contraseña123"
 }
 

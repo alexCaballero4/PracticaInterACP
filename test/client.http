@@ -1,0 +1,43 @@
+GET http://localhost:3000/api
+
+### Crear cliente
+POST http://localhost:3000/api/client
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Zjc5YmI0YzMzMTNmODU0YjM5YTk1YyIsImVtYWlsIjoicHJ1ZWJhOUBnbWFpbC5jb20iLCJpYXQiOjE3NDQyODExMDMsImV4cCI6MTc0NDI4NDcwM30.Bt0O7cmMdSWlYfEYm6jh6LkuhoXtiGoSpT0Bf8bWONE
+Content-Type: application/json
+
+{
+  "name": "Cliente a actualizar",
+  "cif": "A12345678",
+  "address": {
+    "street": "Carlitoss III",
+    "number": 22,
+    "postal": 28936,
+    "city": "Móstoles",
+    "province": "Madrid"
+  }
+}
+
+### Actualizar cliente
+PUT http://localhost:3000/api/client/67f79e57a7923aee1e4ba0b6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Zjc5YmI0YzMzMTNmODU0YjM5YTk1YyIsImVtYWlsIjoicHJ1ZWJhOUBnbWFpbC5jb20iLCJpYXQiOjE3NDQyODExMDMsImV4cCI6MTc0NDI4NDcwM30.Bt0O7cmMdSWlYfEYm6jh6LkuhoXtiGoSpT0Bf8bWONE
+Content-Type: application/json
+
+{
+  "name": "Cliente actualizado",
+  "cif": "D52921210",
+  "address": {
+    "street": "Avenida Constitución",
+    "number": 88,
+    "postal": 28933,
+    "city": "Leganés",
+    "province": "Madrid"
+  }
+}
+
+### Obtener todos los clientes del usuario
+GET http://localhost:3000/api/client
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Zjc5YmI0YzMzMTNmODU0YjM5YTk1YyIsImVtYWlsIjoicHJ1ZWJhOUBnbWFpbC5jb20iLCJpYXQiOjE3NDQyODE2NjcsImV4cCI6MTc0NDI4NTI2N30.DpeeMlEs76JchncmWRB84QActgToOOYwgUr3C37OKuk
+
+### Obtener cliente por ID
+GET http://localhost:3000/api/client/67f79e57a7923aee1e4ba0b6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Zjc5YmI0YzMzMTNmODU0YjM5YTk1YyIsImVtYWlsIjoicHJ1ZWJhOUBnbWFpbC5jb20iLCJpYXQiOjE3NDQyODE2NjcsImV4cCI6MTc0NDI4NTI2N30.DpeeMlEs76JchncmWRB84QActgToOOYwgUr3C37OKuk
