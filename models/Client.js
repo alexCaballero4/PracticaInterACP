@@ -12,6 +12,11 @@ const clientSchema = new mongoose.Schema({
         province: { type: String },
     },
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    status: {
+        type: String,
+        enum: ['active', 'archived'],
+        default: 'active'
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Client', clientSchema);

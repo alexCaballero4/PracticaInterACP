@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../middleware/authMiddleware');
-const { createClient, updateClient, getClients, getClientById } = require('../controllers/client');
+const { createClient, updateClient, getClients, getClientById, deleteClient } = require('../controllers/client');
 const { clientValidator } = require('../validators/client');
 
 /**
@@ -149,5 +149,37 @@ router.get('/', authMiddleware, getClients);
  *         description: Error interno del servidor
  */
 router.get('/:id', authMiddleware, getClientById);
+
+/**
+ * @openapi
+ * /client/{id}:
+ *   delete:
+ *     summary: Elimina (archiva o borra) un cliente
+ *     tags:
+ *       - Client
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del cliente a eliminar
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: soft
+ *         required: false
+ *         description: Si es false, se elimina definitivamente
+ *         schema:
+ *           type: boolean
+ *     responses:
+ *       200:
+ *         description: Cliente archivado o eliminado correctamente
+ *       404:
+ *         description: Cliente no encontrado
+ *       500:
+ *         description: Error interno del servidor
+ */
+router.delete('/:id', authMiddleware, deleteClient);
 
 module.exports = router;
