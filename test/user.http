@@ -5,17 +5,17 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-  "email": "prueba9@gmail.com",
+  "email": "prueba10@gmail.com",
   "password": "contraseña123"
 }
 
 ### Validacion
 POST http://localhost:3000/api/user/validation
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Zjc5YmI0YzMzMTNmODU0YjM5YTk1YyIsImVtYWlsIjoicHJ1ZWJhOUBnbWFpbC5jb20iLCJpYXQiOjE3NDQyODA1MDAsImV4cCI6MTc0NDI4NDEwMH0.hVzOL_wjqjoL7aSGKVW37wFNCFhbz2_1JCECLaIyfME
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0Nzk4NTg2LCJleHAiOjE3NDQ4MDIxODZ9.TA6E97n6yubmFWGC0uGCBGOwQyq0p0gxyIbbimGNHH4
 Content-Type: application/json
 
 {
-  "code": "601276"
+  "code": "274543"
 }
 
 ### Login
@@ -23,7 +23,7 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-  "email": "prueba9@gmail.com",
+  "email": "prueba10@gmail.com",
   "password": "contraseña123"
 }
 

@@ -1,0 +1,64 @@
+### Crear proyecto
+POST http://localhost:3000/api/project
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0ODAxMTU3LCJleHAiOjE3NDQ4MDQ3NTd9.a1_ovnjaYNqzeQTMR4A-mJn2uK2wlNyVfJJg0jDzmIY
+Content-Type: application/json
+
+{
+  "name": "Proyecto Tres",
+  "projectCode": "ACS-03",
+  "email": "cliente@acs.com",
+  "code": "PACS003",
+  "clientId": "67ff83f8ea227ac5deea6e6d",
+  "address": {
+    "street": "Avenida Constitución",
+    "number": 57,
+    "postal": 28080,
+    "city": "Madrid",
+    "province": "Madrid"
+  }
+}
+
+### Actualizar proyecto
+PUT http://localhost:3000/api/project/67ff8541d0fd65645250284f
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0Nzk5NDI3LCJleHAiOjE3NDQ4MDMwMjd9.t2B1wf5zINf3WIp8U2wjt6Ashy0LHZR7m1VU_g9D91Y
+Content-Type: application/json
+
+{
+  "name": "obra",
+  "projectCode": "100000",
+  "email": "mimail@gmail.com",
+  "code": "00001-01",
+  "clientId": "67ff8379ea227ac5deea6e67",
+  "address": {
+    "street": "Carlos V",
+    "number": 22,
+    "postal": 28936,
+    "city": "Móstoles",
+    "province": "Madrid"
+  },
+  "notes": "Notas del proyecto"
+}
+
+### Obtener todos los proyectos
+GET http://localhost:3000/api/project
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0ODAxMTU3LCJleHAiOjE3NDQ4MDQ3NTd9.a1_ovnjaYNqzeQTMR4A-mJn2uK2wlNyVfJJg0jDzmIY
+
+### Obtener un proyecto concreto
+GET http://localhost:3000/api/project/one/67ff8a4976f44b7c2fea3b6f
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0ODAwNjcwLCJleHAiOjE3NDQ4MDQyNzB9.ZN4906yjEHsqjjiwfJo6jc0lUSolMd79h_4RynAzPDI
+
+### Archivar proyecto (soft delete)
+DELETE http://localhost:3000/api/project/67ff8db41c85de69b29d8e84
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0ODAxMTU3LCJleHAiOjE3NDQ4MDQ3NTd9.a1_ovnjaYNqzeQTMR4A-mJn2uK2wlNyVfJJg0jDzmIY
+
+### Borrar proyecto permanentemente (hard delete)
+DELETE http://localhost:3000/api/project/67ff8a4976f44b7c2fea3b6f?soft=false
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0ODAwNjcwLCJleHAiOjE3NDQ4MDQyNzB9.ZN4906yjEHsqjjiwfJo6jc0lUSolMd79h_4RynAzPDI
+
+### Obtener proyectos archivados
+GET http://localhost:3000/api/project/archive
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0ODAwNjcwLCJleHAiOjE3NDQ4MDQyNzB9.ZN4906yjEHsqjjiwfJo6jc0lUSolMd79h_4RynAzPDI
+
+### Restaurar proyecto archivado
+PATCH http://localhost:3000/api/project/restore/67ff8dc71c85de69b29d8e86
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0ODAwNjcwLCJleHAiOjE3NDQ4MDQyNzB9.ZN4906yjEHsqjjiwfJo6jc0lUSolMd79h_4RynAzPDI
