@@ -6,6 +6,7 @@ const userRoutes = require('./user');
 const storageRoutes = require('./storage');
 const clientRoutes = require('./client');
 const projectRoutes = require('./project');
+const deliveryNoteRoutes = require('./deliveryNote');
 
 router.get('/', (req, res) => {
     res.send('API funcionando correctamente');
@@ -16,5 +17,6 @@ router.use('/user', userRoutes);
 router.use('/user', storageRoutes);
 router.use('/client', clientRoutes);
 router.use('/project', projectRoutes);
+router.use('/deliverynote', deliveryNoteRoutes);
 
 module.exports = router;

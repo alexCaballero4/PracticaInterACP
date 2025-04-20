@@ -41,7 +41,7 @@ Content-Type: application/json
 
 ### Obtener todos los proyectos
 GET http://localhost:3000/api/project
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0ODAxMTU3LCJleHAiOjE3NDQ4MDQ3NTd9.a1_ovnjaYNqzeQTMR4A-mJn2uK2wlNyVfJJg0jDzmIY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ1MDAxOTA4LCJleHAiOjE3NDUwMDU1MDh9.DVpPAirV8LCw6nbfSpYDT8An-7fIZ8H5tKVAIoZMB_I
 
 ### Obtener un proyecto concreto
 GET http://localhost:3000/api/project/one/67ff8a4976f44b7c2fea3b6f
