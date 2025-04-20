@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../middleware/authMiddleware');
-const { createDeliveryNote } = require('../controllers/deliveryNote');
+const { createDeliveryNote, getDeliveryNotes, getDeliveryNoteById } = require('../controllers/deliveryNote');
 const { createDeliveryNoteValidator } = require('../validators/deliveryNote');
 
 /**
@@ -59,5 +59,68 @@ const { createDeliveryNoteValidator } = require('../validators/deliveryNote');
  *         description: Error interno del servidor
  */
 router.post('/', authMiddleware, createDeliveryNoteValidator, createDeliveryNote);
+
+/**
+ * @openapi
+ * /deliverynote:
+ *   get:
+ *     summary: Obtener albaranes del usuario autenticado
+ *     tags:
+ *       - DeliveryNote
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: company
+ *         schema:
+ *           type: boolean
+ *         description: Si se activa, también obtiene albaranes de la empresa del usuario
+ *       - in: query
+ *         name: signed
+ *         schema:
+ *           type: boolean
+ *         description: Si se pasa, filtra por albaranes firmados o pendientes
+ *     responses:
+ *       200:
+ *         description: Lista de albaranes del usuario
+ *       401:
+ *         description: Token inválido o no enviado
+ *       500:
+ *         description: Error interno del servidor
+ */
+router.get('/', authMiddleware, getDeliveryNotes);
+
+/**
+ * @openapi
+ * /deliverynote/{id}:
+ *   get:
+ *     summary: Obtener un albarán específico
+ *     tags:
+ *       - DeliveryNote
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID del albarán a recuperar
+ *       - in: query
+ *         name: company
+ *         schema:
+ *           type: boolean
+ *         description: Indica si debe buscar también en la compañía del usuario
+ *     responses:
+ *       200:
+ *         description: Devuelve el albarán
+ *       401:
+ *         description: Token inválido o acceso no autorizado
+ *       404:
+ *         description: Albarán no encontrado
+ *       500:
+ *         description: Error interno del servidor
+ */
+router.get('/:id', authMiddleware, getDeliveryNoteById);
 
 module.exports = router;
