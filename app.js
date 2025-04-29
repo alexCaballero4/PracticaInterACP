@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 require('dotenv').config()
+const path = require('path');
 
 const routers = require('./routes/')
 
@@ -18,6 +19,8 @@ app.use('/api', routers)
 const port = process.env.PORT || 3000
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.listen(port, () => {
     console.log(`Escuchando en el puerto ${port}`);

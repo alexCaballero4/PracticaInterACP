@@ -1,6 +1,8 @@
-### Crear albarán tipo horas
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ1OTUyMDgyLCJleHAiOjE3NDU5NTU2ODJ9.1Jy5YZgO5nxC-YLhjca9_yCdB0hihrxpVj33KaXiRjI
+
+### Crear albaran tipo horas
 POST http://localhost:3000/api/deliverynote
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ1MTcyMDkwLCJleHAiOjE3NDUxNzU2OTB9.DGY1SiqLwrinmXglaoTuHnDRhrxpAFq86D2wu42VJpc
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -12,9 +14,9 @@ Content-Type: application/json
   "workdate": "5/1/2024"
 }
 
-### Crear albarán tipo material
-POST http://localhost:3000/api/deliverynote
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ1MTcyMDkwLCJleHAiOjE3NDUxNzU2OTB9.DGY1SiqLwrinmXglaoTuHnDRhrxpAFq86D2wu42VJpc
+### Crear albaran tipo material
+POST http://localhost:3000/api/deliverynote/
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -28,16 +30,20 @@ Content-Type: application/json
 
 ### Obtener todos los albaranes del usuario
 GET http://localhost:3000/api/deliverynote
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ1MTcyNjU4LCJleHAiOjE3NDUxNzYyNTh9.2-UjfbRWAsoEvF99zgXr4VAfyPE1-WMrsAHz4hr885Y
+Authorization: Bearer {{token}}
 
 ### Obtener albaranes firmados
 GET http://localhost:3000/api/deliverynote?signed=true
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ1MTcyMDkwLCJleHAiOjE3NDUxNzU2OTB9.DGY1SiqLwrinmXglaoTuHnDRhrxpAFq86D2wu42VJpc
+Authorization: Bearer {{token}}
 
 ### Obtener albaranes pendientes
 GET http://localhost:3000/api/deliverynote?signed=false
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ1MTcyMDkwLCJleHAiOjE3NDUxNzU2OTB9.DGY1SiqLwrinmXglaoTuHnDRhrxpAFq86D2wu42VJpc
+Authorization: Bearer {{token}}
 
 ### Obtener un albarán específico
 GET http://localhost:3000/api/deliverynote/680536e7e1c69b47321d6040
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ1MTczMDMyLCJleHAiOjE3NDUxNzY2MzJ9.OCANK91ZmyiRBakblaLAMGmGxgfbIJ-j4cPRyBu7yB0
+Authorization: Bearer {{token}}
+
+### Generar y ver PDF de un albarán
+GET http://localhost:3000/api/deliverynote/pdf/680536e7e1c69b47321d6040
+Authorization: Bearer {{token}}

@@ -1,3 +1,5 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ1OTUyMDgyLCJleHAiOjE3NDU5NTU2ODJ9.1Jy5YZgO5nxC-YLhjca9_yCdB0hihrxpVj33KaXiRjI
+
 GET http://localhost:3000/api
 
 ### Registro Valido
@@ -5,17 +7,17 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-  "email": "prueba10@gmail.com",
+  "email": "prueba11@gmail.com",
   "password": "contraseña123"
 }
 
 ### Validacion
 POST http://localhost:3000/api/user/validation
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0Nzk4NTg2LCJleHAiOjE3NDQ4MDIxODZ9.TA6E97n6yubmFWGC0uGCBGOwQyq0p0gxyIbbimGNHH4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTExZTkwZTI0NTM5MjZmZDQ1OGE5MCIsImVtYWlsIjoicHJ1ZWJhMTFAZ21haWwuY29tIiwiaWF0IjoxNzQ1OTUyNDAwLCJleHAiOjE3NDU5NTYwMDB9.H67cQpereJIFgabPWCmrJTwA_OBD1IldTdd3dpmpqkc
 Content-Type: application/json
 
 {
-  "code": "274543"
+  "code": "463704"
 }
 
 ### Login
@@ -23,13 +25,13 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-  "email": "prueba10@gmail.com",
+  "email": "prueba11@gmail.com",
   "password": "contraseña123"
 }
 
 ### Onboarding - Datos personales
 PUT http://localhost:3000/api/user/register
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWFlMGJkM2NlOGU5YWU4ZDg5YzU2NCIsImVtYWlsIjoicHJ1ZWJhOEBnbWFpbC5jb20iLCJpYXQiOjE3NDM0NDYyNDMsImV4cCI6MTc0MzQ0OTg0M30.MqEEzz6pduYu96CzGRqz_BPvgdFlv0XFgVrZT_bsAeo
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -40,7 +42,7 @@ Content-Type: application/json
 
 ### Onboarding - Empresa normal
 PATCH http://localhost:3000/api/user/company
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWFlMGJkM2NlOGU5YWU4ZDg5YzU2NCIsImVtYWlsIjoicHJ1ZWJhOEBnbWFpbC5jb20iLCJpYXQiOjE3NDM0NDYyNDMsImV4cCI6MTc0MzQ0OTg0M30.MqEEzz6pduYu96CzGRqz_BPvgdFlv0XFgVrZT_bsAeo
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -57,7 +59,7 @@ Content-Type: application/json
 
 ### Onboarding - Autonomo
 PATCH http://localhost:3000/api/user/company
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTkyMWY0M2VjMjA2MjllZjZlYzUxNyIsImVtYWlsIjoicHJ1ZWJhN0BnbWFpbC5jb20iLCJpYXQiOjE3NDMzMzE5MDUsImV4cCI6MTc0MzMzNTUwNX0.jsGW5acJlGwelwbhKdStyB0hRXUTY4VM63u2g3IIQ0Q
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -71,7 +73,7 @@ Content-Type: application/json
 
 ### Subir logo a Pinata
 PATCH http://localhost:3000/api/user/logo
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWFlMGJkM2NlOGU5YWU4ZDg5YzU2NCIsImVtYWlsIjoicHJ1ZWJhOEBnbWFpbC5jb20iLCJpYXQiOjE3NDM0NDYyNDMsImV4cCI6MTc0MzQ0OTg0M30.MqEEzz6pduYu96CzGRqz_BPvgdFlv0XFgVrZT_bsAeo
+Authorization: Bearer {{token}}
 Content-Type: multipart/form-data; boundary=boundary123
 
 --boundary123
@@ -83,15 +85,15 @@ Content-Type: image/png
 
 ### GET datos del usuario
 GET http://localhost:3000/api/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWQwODg4OTczNGU0MTU4ZDE1ZjJmYiIsImVtYWlsIjoicHJ1ZWJhOUBnbWFpbC5jb20iLCJpYXQiOjE3NDM1ODc1NzQsImV4cCI6MTc0MzU5MTE3NH0.58c3MpeojndUsN4EIBJ33AnUm-KtInGYRKJcV9FWTes
+Authorization: Bearer {{token}}
 
 ### Soft delete
 DELETE http://localhost:3000/api/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWQwODg4OTczNGU0MTU4ZDE1ZjJmYiIsImVtYWlsIjoicHJ1ZWJhOUBnbWFpbC5jb20iLCJpYXQiOjE3NDM1ODc1NzQsImV4cCI6MTc0MzU5MTE3NH0.58c3MpeojndUsN4EIBJ33AnUm-KtInGYRKJcV9FWTes
+Authorization: Bearer {{token}}
 
 ### Hard delete
 DELETE http://localhost:3000/api/user?soft=false
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWQwODg4OTczNGU0MTU4ZDE1ZjJmYiIsImVtYWlsIjoicHJ1ZWJhOUBnbWFpbC5jb20iLCJpYXQiOjE3NDM1ODc1NzQsImV4cCI6MTc0MzU5MTE3NH0.58c3MpeojndUsN4EIBJ33AnUm-KtInGYRKJcV9FWTes
+Authorization: Bearer {{token}}
 
 ### Recuperar contraseña
 POST http://localhost:3000/api/user/recover

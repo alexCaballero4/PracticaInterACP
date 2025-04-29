@@ -1,6 +1,8 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ1OTUyMDgyLCJleHAiOjE3NDU5NTU2ODJ9.1Jy5YZgO5nxC-YLhjca9_yCdB0hihrxpVj33KaXiRjI
+
 ### Crear proyecto
 POST http://localhost:3000/api/project
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0ODAxMTU3LCJleHAiOjE3NDQ4MDQ3NTd9.a1_ovnjaYNqzeQTMR4A-mJn2uK2wlNyVfJJg0jDzmIY
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -20,7 +22,7 @@ Content-Type: application/json
 
 ### Actualizar proyecto
 PUT http://localhost:3000/api/project/67ff8541d0fd65645250284f
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0Nzk5NDI3LCJleHAiOjE3NDQ4MDMwMjd9.t2B1wf5zINf3WIp8U2wjt6Ashy0LHZR7m1VU_g9D91Y
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -41,24 +43,24 @@ Content-Type: application/json
 
 ### Obtener todos los proyectos
 GET http://localhost:3000/api/project
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ1MTcyNjU4LCJleHAiOjE3NDUxNzYyNTh9.2-UjfbRWAsoEvF99zgXr4VAfyPE1-WMrsAHz4hr885Y
+Authorization: Bearer {{token}}
 
 ### Obtener un proyecto concreto
 GET http://localhost:3000/api/project/one/67ff8a4976f44b7c2fea3b6f
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0ODAwNjcwLCJleHAiOjE3NDQ4MDQyNzB9.ZN4906yjEHsqjjiwfJo6jc0lUSolMd79h_4RynAzPDI
+Authorization: Bearer {{token}}
 
 ### Archivar proyecto (soft delete)
 DELETE http://localhost:3000/api/project/67ff8db41c85de69b29d8e84
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0ODAxMTU3LCJleHAiOjE3NDQ4MDQ3NTd9.a1_ovnjaYNqzeQTMR4A-mJn2uK2wlNyVfJJg0jDzmIY
+Authorization: Bearer {{token}}
 
 ### Borrar proyecto permanentemente (hard delete)
 DELETE http://localhost:3000/api/project/67ff8a4976f44b7c2fea3b6f?soft=false
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0ODAwNjcwLCJleHAiOjE3NDQ4MDQyNzB9.ZN4906yjEHsqjjiwfJo6jc0lUSolMd79h_4RynAzPDI
+Authorization: Bearer {{token}}
 
 ### Obtener proyectos archivados
 GET http://localhost:3000/api/project/archive
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0ODAwNjcwLCJleHAiOjE3NDQ4MDQyNzB9.ZN4906yjEHsqjjiwfJo6jc0lUSolMd79h_4RynAzPDI
+Authorization: Bearer {{token}}
 
 ### Restaurar proyecto archivado
 PATCH http://localhost:3000/api/project/restore/67ff8dc71c85de69b29d8e86
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ0ODAwNjcwLCJleHAiOjE3NDQ4MDQyNzB9.ZN4906yjEHsqjjiwfJo6jc0lUSolMd79h_4RynAzPDI
+Authorization: Bearer {{token}}

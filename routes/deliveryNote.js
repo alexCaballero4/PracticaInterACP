@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../middleware/authMiddleware');
-const { createDeliveryNote, getDeliveryNotes, getDeliveryNoteById } = require('../controllers/deliveryNote');
+const { createDeliveryNote, getDeliveryNotes, getDeliveryNoteById, generateDeliveryNotePDF } = require('../controllers/deliveryNote');
 const { createDeliveryNoteValidator } = require('../validators/deliveryNote');
 
 /**
@@ -122,5 +122,38 @@ router.get('/', authMiddleware, getDeliveryNotes);
  *         description: Error interno del servidor
  */
 router.get('/:id', authMiddleware, getDeliveryNoteById);
+
+/**
+ * @openapi
+ * /deliverynote/pdf/{id}:
+ *   get:
+ *     summary: Generar y descargar el PDF de un albarán
+ *     tags:
+ *       - DeliveryNote
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID del albarán
+ *     responses:
+ *       200:
+ *         description: Devuelve un archivo PDF generado con los datos del albarán
+ *         content:
+ *           application/pdf:
+ *             schema:
+ *               type: string
+ *               format: binary
+ *       401:
+ *         description: No autorizado para acceder al albarán
+ *       404:
+ *         description: Albarán no encontrado
+ *       500:
+ *         description: Error interno del servidor
+ */
+router.get('/pdf/:id', authMiddleware, generateDeliveryNotePDF);
 
 module.exports = router;
