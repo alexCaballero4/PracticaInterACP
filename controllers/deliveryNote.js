@@ -1,14 +1,15 @@
 const { matchedData, validationResult } = require('express-validator');
+const axios = require('axios');
 const DeliveryNote = require('../models/DeliveryNote');
 const { handleHttpError } = require('../utils/handleError');
-const PDFDocument = require('pdfkit');
+const { uploadToPinata } = require('../utils/handleUploadIPFS');
 const fs = require('fs');
 const path = require('path');
-
+const PDFDocument = require('pdfkit');
 
 const createDeliveryNote = async (req, res) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() });
+    if (!errors.isEmpty()) return handleHttpError(res, 'Error de validación', 422);
 
     const data = matchedData(req);
 
@@ -27,16 +28,14 @@ const createDeliveryNote = async (req, res) => {
 
 const getDeliveryNotes = async (req, res) => {
     const userId = req.user.id;
-    const { company = false, signed } = req.query;
+    const { signed } = req.query;
 
     try {
-        const query = { deleted: { $ne: true } };
+        const query = { deleted: { $ne: true }, userId };
 
         if (signed !== undefined) {
             query.pending = signed === 'false';
         }
-
-        query.userId = userId;
 
         const deliveryNotes = await DeliveryNote.find(query)
             .populate('clientId')
@@ -46,7 +45,7 @@ const getDeliveryNotes = async (req, res) => {
         res.status(200).json(deliveryNotes);
     } catch (err) {
         console.error('Error al obtener los albaranes:', err);
-        res.status(500).json({ message: 'Error interno del servidor' });
+        return handleHttpError(res);
     }
 };
 
@@ -60,40 +59,28 @@ const getDeliveryNoteById = async (req, res) => {
             .populate('projectId')
             .populate('userId');
 
-        if (!note) return res.status(404).json({ message: 'Albarán no encontrado' });
-
-        if (note.userId._id.toString() !== userId) {
-            return res.status(401).json({ message: 'No autorizado para ver este albarán' });
-        }
-
-        const user = note.userId;
-        const client = note.clientId;
-        const project = note.projectId;
-
-        const concepts = note.format === 'hours'
-            ? note.multi || []
-            : note.materials || [];
+        if (!note) return handleHttpError(res, 'Albarán no encontrado', 404);
+        if (note.userId._id.toString() !== userId) return handleHttpError(res, 'No autorizado', 401);
 
         const response = {
-            company: user.company || null,
-            name: user.nombre,
+            company: note.userId.company || null,
+            name: note.userId.nombre,
             date: note.createdAt,
             client: {
-                name: client.name,
-                address: client.address,
-                cif: client.cif
+                name: note.clientId.name,
+                address: note.clientId.address,
+                cif: note.clientId.cif
             },
-            project: project.code || project.projectCode || '',
+            project: note.projectId.code || note.projectId.projectCode || '',
             format: note.format,
-            concepts,
+            concepts: note.format === 'hours' ? note.multi || [] : note.materials || [],
             photo: note.sign || null
         };
 
         return res.status(200).json(response);
-
     } catch (err) {
         console.error('Error al obtener el albarán:', err);
-        return res.status(500).json({ message: 'Error interno del servidor' });
+        return handleHttpError(res);
     }
 };
 
@@ -107,22 +94,23 @@ const generateDeliveryNotePDF = async (req, res) => {
             .populate('projectId')
             .populate('userId');
 
-        if (!note) return res.status(404).json({ message: 'Albarán no encontrado' });
-
-        if (note.userId._id.toString() !== userId) {
-            return res.status(401).json({ message: 'No autorizado para ver este albarán' });
-        }
-
-        const user = note.userId;
-        const client = note.clientId;
-        const project = note.projectId;
-
-        const concepts = note.format === 'hours'
-            ? note.multi || [{ name: user.nombre, hours: note.hours }]
-            : note.multi || [{ name: note.material, quantity: 1 }];
+        if (!note) return handleHttpError(res, 'Albarán no encontrado', 404);
+        if (note.userId._id.toString() !== userId) return handleHttpError(res, 'No autorizado', 401);
 
         const pdfName = `albaran_${noteId}.pdf`;
         const pdfPath = path.join(__dirname, '..', 'uploads', pdfName);
+
+        if (note.sign) {
+            try {
+                const pdfUrl = `https://${note.pdf}`;
+                const pdfResponse = await axios.get(pdfUrl, { responseType: 'arraybuffer' });
+                fs.writeFileSync(pdfPath, pdfResponse.data);
+                return res.status(200).json({ message: 'PDF firmado descargado correctamente', url: `${req.protocol}://${req.get('host')}/uploads/${pdfName}` });
+            } catch (error) {
+                console.error('Error descargando PDF desde IPFS:', error.message);
+                return handleHttpError(res, 'Error al descargar PDF firmado', 500);
+            }
+        }
 
         const doc = new PDFDocument();
         const stream = fs.createWriteStream(pdfPath);
@@ -131,14 +119,21 @@ const generateDeliveryNotePDF = async (req, res) => {
         doc.fontSize(18).text('Albarán de Trabajo', { align: 'center' });
         doc.moveDown();
         doc.fontSize(12).text(`Fecha: ${note.workdate}`);
-        doc.text(`Proyecto: ${project.code || project.projectCode}`);
+        doc.text(`Proyecto: ${note.projectId.code || note.projectId.projectCode}`);
         doc.text(`Descripción: ${note.description}`);
-        doc.text(`Usuario: ${user.nombre} (${user.email})`);
-        doc.text(`Cliente: ${client.name} - ${client.address}`);
-        doc.text(`CIF: ${client.cif}`);
+        doc.text(`Usuario: ${note.userId.nombre || ''} (${note.userId.email})`);
+
+        const addr = note.clientId.address;
+        doc.text(`Cliente: ${note.clientId.name}`);
+        doc.text(`Dirección: ${addr.street}, ${addr.number}, ${addr.postal} ${addr.city} (${addr.province})`);
+        doc.text(`CIF: ${note.clientId.cif}`);
         doc.moveDown();
 
         doc.fontSize(14).text('Detalles:', { underline: true });
+        const concepts = note.format === 'hours'
+            ? note.multi || [{ name: note.userId.nombre, hours: note.hours }]
+            : note.multi || [{ name: note.material, quantity: 1 }];
+
         concepts.forEach((item, index) => {
             if (note.format === 'hours') {
                 doc.fontSize(12).text(`${index + 1}. ${item.name || 'Trabajador'} - ${item.hours} horas`);
@@ -146,14 +141,6 @@ const generateDeliveryNotePDF = async (req, res) => {
                 doc.fontSize(12).text(`${index + 1}. ${item.name || 'Material'} - ${item.quantity || 1} uds`);
             }
         });
-
-        if (note.sign) {
-            const imgPath = path.resolve('storage', 'signatures', note.sign);
-            if (fs.existsSync(imgPath)) {
-                doc.addPage().image(imgPath, { fit: [400, 200], align: 'center' });
-                doc.text('Firma del cliente', { align: 'center' });
-            }
-        }
 
         doc.end();
 
@@ -164,10 +151,94 @@ const generateDeliveryNotePDF = async (req, res) => {
 
     } catch (err) {
         console.error('Error al generar el PDF del albarán:', err);
-        return res.status(500).json({ message: 'Error interno del servidor' });
+        return handleHttpError(res);
     }
 };
 
+const signDeliveryNote = async (req, res) => {
+    try {
+        const noteId = req.params.id;
+        const userId = req.user.id;
 
+        if (!req.file) return handleHttpError(res, 'No se ha proporcionado ningún archivo', 422);
 
-module.exports = { createDeliveryNote, getDeliveryNotes, getDeliveryNoteById, generateDeliveryNotePDF };
+        const note = await DeliveryNote.findById(noteId)
+            .populate('clientId')
+            .populate('projectId')
+            .populate('userId');
+
+        if (!note) return handleHttpError(res, 'Albarán no encontrado', 404);
+        if (note.userId._id.toString() !== userId) return handleHttpError(res, 'No autorizado', 401);
+
+        const { buffer, originalname } = req.file;
+        const signFileName = `firma_${noteId}${path.extname(originalname)}`;
+        const signPath = path.join(__dirname, '..', 'uploads', signFileName);
+        fs.writeFileSync(signPath, buffer);
+
+        const pinataRes = await uploadToPinata(buffer, originalname);
+        const ipfsURL = `${process.env.PINATA_GATEWAY_URL}/ipfs/${pinataRes.IpfsHash}`;
+
+        note.sign = ipfsURL;
+        note.pending = false;
+
+        const pdfName = `albaran_${noteId}.pdf`;
+        const pdfPath = path.join(__dirname, '..', 'uploads', pdfName);
+        const doc = new PDFDocument();
+        const stream = fs.createWriteStream(pdfPath);
+        doc.pipe(stream);
+
+        doc.fontSize(18).text('Albarán de Trabajo', { align: 'center' });
+        doc.moveDown();
+        doc.fontSize(12).text(`Fecha: ${note.workdate}`);
+        doc.text(`Proyecto: ${note.projectId.code || note.projectId.projectCode}`);
+        doc.text(`Descripción: ${note.description}`);
+        doc.text(`Usuario: ${note.userId.nombre || ''} (${note.userId.email})`);
+
+        const addr = note.clientId.address;
+        doc.text(`Cliente: ${note.clientId.name}`);
+        doc.text(`Dirección: ${addr.street}, ${addr.number}, ${addr.postal} ${addr.city} (${addr.province})`);
+        doc.text(`CIF: ${note.clientId.cif}`);
+        doc.moveDown();
+
+        doc.fontSize(14).text('Detalles:', { underline: true });
+        const concepts = note.format === 'hours'
+            ? note.multi || [{ name: note.userId.nombre, hours: note.hours }]
+            : note.multi || [{ name: note.material, quantity: 1 }];
+
+        concepts.forEach((item, index) => {
+            if (note.format === 'hours') {
+                doc.fontSize(12).text(`${index + 1}. ${item.name || 'Trabajador'} - ${item.hours} horas`);
+            } else {
+                doc.fontSize(12).text(`${index + 1}. ${item.name || 'Material'} - ${item.quantity || 1} uds`);
+            }
+        });
+
+        try {
+            doc.addPage().image(buffer, { fit: [400, 200], align: 'center' });
+            doc.text('Firma del cliente', { align: 'center' });
+        } catch (e) {
+            console.warn('Error al insertar imagen de firma:', e.message);
+            doc.addPage().fontSize(12).text('Firma no disponible', { align: 'center' });
+        }
+
+        doc.end();
+
+        stream.on('finish', async () => {
+            const pdfBuffer = fs.readFileSync(pdfPath);
+            const pdfUpload = await uploadToPinata(pdfBuffer, pdfName);
+            note.pdf = `${process.env.PINATA_GATEWAY_URL}/ipfs/${pdfUpload.IpfsHash}`;
+
+            await note.save();
+
+            return res.status(200).json({
+                message: 'Albarán firmado correctamente',
+                sign: ipfsURL
+            });
+        });
+    } catch (err) {
+        console.error('Error al firmar albarán:', err);
+        return handleHttpError(res, 'Error interno al firmar albarán');
+    }
+};
+
+module.exports = { createDeliveryNote, getDeliveryNotes, getDeliveryNoteById, generateDeliveryNotePDF, signDeliveryNote };

@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ1OTUyMDgyLCJleHAiOjE3NDU5NTU2ODJ9.1Jy5YZgO5nxC-YLhjca9_yCdB0hihrxpVj33KaXiRjI
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ2MDk4MDQyLCJleHAiOjE3NDYxMDE2NDJ9.a8ZRraAsOX_vxRF7XcqEwbvNco9giSq3NTVyxHOFykw
 
 ### Crear albaran tipo horas
 POST http://localhost:3000/api/deliverynote
@@ -47,3 +47,15 @@ Authorization: Bearer {{token}}
 ### Generar y ver PDF de un albarán
 GET http://localhost:3000/api/deliverynote/pdf/680536e7e1c69b47321d6040
 Authorization: Bearer {{token}}
+
+### Firmar albarán (subir imagen firma)
+PATCH http://localhost:3000/api/deliverynote/sign/680536e7e1c69b47321d6040
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=boundary123
+
+--boundary123
+Content-Disposition: form-data; name="sign"; filename="firma.png"
+Content-Type: image/png
+
+< ../images/Logo-U-tad 1.png
+--boundary123--

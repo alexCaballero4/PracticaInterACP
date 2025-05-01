@@ -38,7 +38,7 @@ const updateClient = async (req, res) => {
 
         if (!client) return handleHttpError(res, 'Cliente no encontrado o no autorizado', 404);
 
-        Object.assign(client, body); // actualiza campos que lleguen
+        Object.assign(client, body);
         const updated = await client.save();
 
         res.status(200).json(updated);
@@ -78,7 +78,6 @@ const getClientById = async (req, res) => {
 
         const result = {
             ...client.toObject(),
-            // De momento devolvemos estos en 0
             activeProjects: 0,
             pendingDeliveryNotes: 0
         };

@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../middleware/authMiddleware');
-const { createDeliveryNote, getDeliveryNotes, getDeliveryNoteById, generateDeliveryNotePDF } = require('../controllers/deliveryNote');
+const { uploadMiddlewareMemory } = require('../middleware/storageMiddleware');
+const { createDeliveryNote, getDeliveryNotes, getDeliveryNoteById, generateDeliveryNotePDF, signDeliveryNote } = require('../controllers/deliveryNote');
 const { createDeliveryNoteValidator } = require('../validators/deliveryNote');
 
 /**
@@ -28,26 +29,19 @@ const { createDeliveryNoteValidator } = require('../validators/deliveryNote');
  *             properties:
  *               clientId:
  *                 type: string
- *                 example: 6662a8c3c199795c88329e4e
  *               projectId:
  *                 type: string
- *                 example: 6662afde03013916089bc058
  *               format:
  *                 type: string
  *                 enum: [material, hours]
- *                 example: material
  *               material:
  *                 type: string
- *                 example: Cemento blanco
  *               hours:
  *                 type: number
- *                 example: 8
  *               description:
  *                 type: string
- *                 example: Suministro y aplicación de material
  *               workdate:
  *                 type: string
- *                 example: 2/1/2024
  *     responses:
  *       200:
  *         description: Albarán creado correctamente
@@ -141,12 +135,18 @@ router.get('/:id', authMiddleware, getDeliveryNoteById);
  *         description: ID del albarán
  *     responses:
  *       200:
- *         description: Devuelve un archivo PDF generado con los datos del albarán
+ *         description: Devuelve la URL del archivo PDF generado con los datos del albarán
  *         content:
- *           application/pdf:
+ *           application/json:
  *             schema:
- *               type: string
- *               format: binary
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: PDF generado correctamente
+ *                 url:
+ *                   type: string
+ *                   example: http://localhost:3000/uploads/albaran_123456.pdf
  *       401:
  *         description: No autorizado para acceder al albarán
  *       404:
@@ -155,5 +155,58 @@ router.get('/:id', authMiddleware, getDeliveryNoteById);
  *         description: Error interno del servidor
  */
 router.get('/pdf/:id', authMiddleware, generateDeliveryNotePDF);
+
+/**
+ * @openapi
+ * /deliverynote/sign/{id}:
+ *   patch:
+ *     summary: Firmar un albarán subiendo imagen PNG o JPEG
+ *     tags:
+ *       - DeliveryNote
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID del albarán a firmar
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               sign:
+ *                 type: string
+ *                 format: binary
+ *                 description: Firma del cliente en formato PNG o JPEG
+ *     responses:
+ *       200:
+ *         description: Albarán firmado correctamente. Devuelve URL de la firma y del PDF en IPFS.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Albarán firmado correctamente
+ *                 sign:
+ *                   type: string
+ *                   example: https://gateway.pinata.cloud/ipfs/QmX...
+ *                 pdf:
+ *                   type: string
+ *                   example: https://gateway.pinata.cloud/ipfs/QmY...
+ *       401:
+ *         description: No autorizado
+ *       422:
+ *         description: Firma no proporcionada
+ *       500:
+ *         description: Error interno del servidor
+ */
+router.patch('/sign/:id', authMiddleware, uploadMiddlewareMemory.single('sign'), signDeliveryNote);
 
 module.exports = router;
