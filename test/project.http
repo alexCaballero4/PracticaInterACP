@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ1OTUyMDgyLCJleHAiOjE3NDU5NTU2ODJ9.1Jy5YZgO5nxC-YLhjca9_yCdB0hihrxpVj33KaXiRjI
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTRhYTRkMjNlNTMzNDllYmNiZDYwMiIsImVtYWlsIjoibmVnZXRpNDYyNEBiZW56bm9pLmNvbSIsImlhdCI6MTc0NjE4NTM1NiwiZXhwIjoxNzQ2MTg4OTU2fQ.mzb5uclKMu0gG8NKZrkG5Vr9vEyD7A2MxXa9nzhsj8I
 
 ### Crear proyecto
 POST http://localhost:3000/api/project
@@ -6,15 +6,15 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "name": "Proyecto Tres",
+  "name": "Proyecto Uno",
   "projectCode": "ACS-03",
-  "email": "cliente@acs.com",
-  "code": "PACS003",
-  "clientId": "67ff83f8ea227ac5deea6e6d",
+  "email": "lucab@gmail.com",
+  "code": "PLCP001",
+  "clientId": "6814acd123e53349ebcbd615",
   "address": {
-    "street": "Avenida Constitución",
-    "number": 57,
-    "postal": 28080,
+    "street": "Avenida Atenas",
+    "number": 5,
+    "postal": 28232,
     "city": "Madrid",
     "province": "Madrid"
   }
@@ -46,11 +46,11 @@ GET http://localhost:3000/api/project
 Authorization: Bearer {{token}}
 
 ### Obtener un proyecto concreto
-GET http://localhost:3000/api/project/one/67ff8a4976f44b7c2fea3b6f
+GET http://localhost:3000/api/project/one/6814ad4923e53349ebcbd619
 Authorization: Bearer {{token}}
 
 ### Archivar proyecto (soft delete)
-DELETE http://localhost:3000/api/project/67ff8db41c85de69b29d8e84
+DELETE http://localhost:3000/api/project/6814ad4923e53349ebcbd619
 Authorization: Bearer {{token}}
 
 ### Borrar proyecto permanentemente (hard delete)
@@ -62,5 +62,5 @@ GET http://localhost:3000/api/project/archive
 Authorization: Bearer {{token}}
 
 ### Restaurar proyecto archivado
-PATCH http://localhost:3000/api/project/restore/67ff8dc71c85de69b29d8e86
+PATCH http://localhost:3000/api/project/restore/6814ad4923e53349ebcbd619
 Authorization: Bearer {{token}}

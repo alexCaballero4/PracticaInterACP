@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ1OTUyMDgyLCJleHAiOjE3NDU5NTU2ODJ9.1Jy5YZgO5nxC-YLhjca9_yCdB0hihrxpVj33KaXiRjI
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTRhYTRkMjNlNTMzNDllYmNiZDYwMiIsImVtYWlsIjoibmVnZXRpNDYyNEBiZW56bm9pLmNvbSIsImlhdCI6MTc0NjE4NTM1NiwiZXhwIjoxNzQ2MTg4OTU2fQ.mzb5uclKMu0gG8NKZrkG5Vr9vEyD7A2MxXa9nzhsj8I
 
 GET http://localhost:3000/api
 
@@ -7,17 +7,17 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-  "email": "prueba11@gmail.com",
+  "email": "negeti4624@benznoi.com",
   "password": "contraseña123"
 }
 
 ### Validacion
 POST http://localhost:3000/api/user/validation
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTExZTkwZTI0NTM5MjZmZDQ1OGE5MCIsImVtYWlsIjoicHJ1ZWJhMTFAZ21haWwuY29tIiwiaWF0IjoxNzQ1OTUyNDAwLCJleHAiOjE3NDU5NTYwMDB9.H67cQpereJIFgabPWCmrJTwA_OBD1IldTdd3dpmpqkc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTRhYTRkMjNlNTMzNDllYmNiZDYwMiIsImVtYWlsIjoibmVnZXRpNDYyNEBiZW56bm9pLmNvbSIsImlhdCI6MTc0NjE4NDc4MSwiZXhwIjoxNzQ2MTg4MzgxfQ.XI_Sz3fHjXyQxowdDydJmSqk1EKgUWTHn-mHoFkp-sg
 Content-Type: application/json
 
 {
-  "code": "463704"
+  "code": "322032"
 }
 
 ### Login
@@ -25,8 +25,8 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-  "email": "prueba10@gmail.com",
-  "password": "contraseña123"
+  "email": "negeti4624@benznoi.com",
+  "password": "nuevacontraseña123"
 }
 
 ### Onboarding - Datos personales
@@ -35,9 +35,9 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "nombre": "Cristiano",
-  "apellidos": "Ronaldo Aveiro",
-  "nif": "12345678S"
+  "nombre": "Alejandro",
+  "apellidos": "Caballero Poveda",
+  "nif": "12345678J"
 }
 
 ### Onboarding - Empresa normal
@@ -63,8 +63,8 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "street": "Calle Bicho",
-  "number": 7,
+  "street": "Calle Pandora",
+  "number": 1,
   "postal": 28232,
   "city": "Las Rozas",
   "province": "Madrid",
@@ -80,7 +80,7 @@ Content-Type: multipart/form-data; boundary=boundary123
 Content-Disposition: form-data; name="logo"; filename="Logo-U-tad 1.png"
 Content-Type: image/png
 
-< ../images/cristiano.png
+< ../images/mbappe.jpg
 --boundary123--
 
 ### GET datos del usuario
@@ -100,7 +100,7 @@ POST http://localhost:3000/api/user/recover
 Content-Type: application/json
 
 {
-  "email": "prueba8@gmail.com"
+  "email": "negeti4624@benznoi.com"
 }
 
 ### Cambiar contraseña tras recuperación
@@ -108,8 +108,8 @@ PATCH http://localhost:3000/api/user/password
 Content-Type: application/json
 
 {
-  "email": "prueba7@gmail.com",
-  "code": "448841",
+  "email": "negeti4624@benznoi.com",
+  "code": "645301",
   "password": "nuevacontraseña123"
 }
 

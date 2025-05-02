@@ -4,6 +4,7 @@ const { hashPassword, comparePassword } = require('../utils/handlePassword');
 const { handleHttpError } = require('../utils/handleError');
 const { generateToken } = require('../utils/handleJwt');
 const { generateCode } = require('../utils/handleCode');
+const { sendEmail } = require('../utils/handleEmail');
 
 const register = async (req, res) => {
     const errors = validationResult(req);
@@ -27,8 +28,12 @@ const register = async (req, res) => {
 
         const token = generateToken(user);
 
-        console.log('Token registro generado:', token);
-        console.log('Código de verificación:', code);
+        await sendEmail({
+            from: process.env.EMAIL,
+            to: email,
+            subject: 'Código de verificación',
+            text: `Tu código de verificación es: ${code}`,
+        });
 
         res.status(200).json({
             user: {
@@ -90,8 +95,6 @@ const loginUser = async (req, res) => {
 
         const token = generateToken(user);
 
-        console.log('Token login generado:', token);
-
         res.status(200).json({
             user: {
                 _id: user._id,
@@ -125,7 +128,12 @@ const recoverPassword = async (req, res) => {
         user.attempts = 0;
         await user.save();
 
-        console.log('Código de recuperación generado:', code);
+        await sendEmail({
+            from: process.env.EMAIL,
+            to: email,
+            subject: 'Código de recuperación de contraseña',
+            text: `Tu código para recuperar la contraseña es: ${code}`,
+        });
 
         res.status(200).json({
             user: {

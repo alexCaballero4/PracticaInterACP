@@ -6,12 +6,12 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "clientId": "67ff83f8ea227ac5deea6e6d",
-  "projectId": "67ff8dc71c85de69b29d8e86",
+  "clientId": "6814acd123e53349ebcbd615",
+  "projectId": "6814ad4923e53349ebcbd619",
   "format": "hours",
-  "hours": 10,
-  "description": "Cambio de luminaria",
-  "workdate": "5/1/2024"
+  "hours": 15,
+  "description": "Cambio de Cristales",
+  "workdate": "02/05/2025"
 }
 
 ### Crear albaran tipo material
@@ -41,15 +41,15 @@ GET http://localhost:3000/api/deliverynote?signed=false
 Authorization: Bearer {{token}}
 
 ### Obtener un albarán específico
-GET http://localhost:3000/api/deliverynote/680536e7e1c69b47321d6040
+GET http://localhost:3000/api/deliverynote/6814adb623e53349ebcbd624
 Authorization: Bearer {{token}}
 
 ### Generar y ver PDF de un albarán
-GET http://localhost:3000/api/deliverynote/pdf/680536e7e1c69b47321d6040
+GET http://localhost:3000/api/deliverynote/pdf/6814adb623e53349ebcbd624
 Authorization: Bearer {{token}}
 
 ### Firmar albarán (subir imagen firma)
-PATCH http://localhost:3000/api/deliverynote/sign/680536e7e1c69b47321d6040
+PATCH http://localhost:3000/api/deliverynote/sign/6814adb623e53349ebcbd624
 Authorization: Bearer {{token}}
 Content-Type: multipart/form-data; boundary=boundary123
 
@@ -57,9 +57,9 @@ Content-Type: multipart/form-data; boundary=boundary123
 Content-Disposition: form-data; name="sign"; filename="firma.png"
 Content-Type: image/png
 
-< ../images/Logo-U-tad 1.png
+< ../images/mbappe.jpg
 --boundary123--
 
 ### Borrar un albarán que no este firmado
-DELETE http://localhost:3000/api/deliverynote/68029e2cde4aed9d99f61b6b
+DELETE http://localhost:3000/api/deliverynote/6814adb623e53349ebcbd624
 Authorization: Bearer {{token}}

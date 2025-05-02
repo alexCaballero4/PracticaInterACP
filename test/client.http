@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ1OTUyMDgyLCJleHAiOjE3NDU5NTU2ODJ9.1Jy5YZgO5nxC-YLhjca9_yCdB0hihrxpVj33KaXiRjI
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTRhYTRkMjNlNTMzNDllYmNiZDYwMiIsImVtYWlsIjoibmVnZXRpNDYyNEBiZW56bm9pLmNvbSIsImlhdCI6MTc0NjE4NTM1NiwiZXhwIjoxNzQ2MTg4OTU2fQ.mzb5uclKMu0gG8NKZrkG5Vr9vEyD7A2MxXa9nzhsj8I
 
 GET http://localhost:3000/api
 
@@ -8,11 +8,11 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "name": "Cliente Alejandro Caballero",
-  "cif": "A12345555",
+  "name": "Cliente Lucia Caballero",
+  "cif": "B12345555",
   "address": {
-    "street": "Cañada de las merinas",
-    "number": 51,
+    "street": "Calle Dario",
+    "number": 35,
     "postal": 28232,
     "city": "Las Rozas",
     "province": "Madrid"
@@ -41,7 +41,7 @@ GET http://localhost:3000/api/client
 Authorization: Bearer {{token}}
 
 ### Obtener cliente por ID
-GET http://localhost:3000/api/client/67ff80041675ef7d46c4b3a2
+GET http://localhost:3000/api/client/6814acd123e53349ebcbd615
 Authorization: Bearer {{token}}
 
 ### Archivar cliente (soft delete)
