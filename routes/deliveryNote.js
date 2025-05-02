@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../middleware/authMiddleware');
 const { uploadMiddlewareMemory } = require('../middleware/storageMiddleware');
-const { createDeliveryNote, getDeliveryNotes, getDeliveryNoteById, generateDeliveryNotePDF, signDeliveryNote } = require('../controllers/deliveryNote');
+const { createDeliveryNote, getDeliveryNotes, getDeliveryNoteById, generateDeliveryNotePDF, signDeliveryNote, deleteDeliveryNote } = require('../controllers/deliveryNote');
 const { createDeliveryNoteValidator } = require('../validators/deliveryNote');
 
 /**
@@ -208,5 +208,35 @@ router.get('/pdf/:id', authMiddleware, generateDeliveryNotePDF);
  *         description: Error interno del servidor
  */
 router.patch('/sign/:id', authMiddleware, uploadMiddlewareMemory.single('sign'), signDeliveryNote);
+
+/**
+ * @openapi
+ * /deliverynote/{id}:
+ *   delete:
+ *     summary: Borrar un albarán (solo si no está firmado)
+ *     tags:
+ *       - DeliveryNote
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID del albarán a borrar
+ *     responses:
+ *       200:
+ *         description: Albarán eliminado correctamente
+ *       400:
+ *         description: El albarán ya está firmado y no se puede eliminar
+ *       401:
+ *         description: No autorizado
+ *       404:
+ *         description: Albarán no encontrado
+ *       500:
+ *         description: Error interno del servidor
+ */
+router.delete('/:id', authMiddleware, deleteDeliveryNote);
 
 module.exports = router;

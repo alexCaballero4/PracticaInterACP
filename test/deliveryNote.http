@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ2MDk4MDQyLCJleHAiOjE3NDYxMDE2NDJ9.a8ZRraAsOX_vxRF7XcqEwbvNco9giSq3NTVyxHOFykw
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ2MTgyODgyLCJleHAiOjE3NDYxODY0ODJ9._x-6xQkBVS4ScmjYxUrRspd4zl5tHFsQxKNqvBMfMO0
 
 ### Crear albaran tipo horas
 POST http://localhost:3000/api/deliverynote
@@ -59,3 +59,7 @@ Content-Type: image/png
 
 < ../images/Logo-U-tad 1.png
 --boundary123--
+
+### Borrar un albarán que no este firmado
+DELETE http://localhost:3000/api/deliverynote/68029e2cde4aed9d99f61b6b
+Authorization: Bearer {{token}}

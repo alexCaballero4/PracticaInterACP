@@ -241,4 +241,34 @@ const signDeliveryNote = async (req, res) => {
     }
 };
 
-module.exports = { createDeliveryNote, getDeliveryNotes, getDeliveryNoteById, generateDeliveryNotePDF, signDeliveryNote };
+
+const deleteDeliveryNote = async (req, res) => {
+    const userId = req.user.id;
+    const noteId = req.params.id;
+
+    try {
+        const note = await DeliveryNote.findById(noteId);
+
+        if (!note) {
+            return handleHttpError(res, 'Albarán no encontrado', 404);
+        }
+
+        if (note.userId.toString() !== userId) {
+            return handleHttpError(res, 'No autorizado', 401);
+        }
+
+        if (note.sign) {
+            return handleHttpError(res, 'No se puede borrar un albarán ya firmado', 400);
+        }
+
+        await DeliveryNote.deleteOne({ _id: noteId });
+
+        return res.status(200).json({ message: 'Albarán eliminado correctamente' });
+
+    } catch (err) {
+        console.error('Error al eliminar el albarán:', err);
+        return handleHttpError(res);
+    }
+};
+
+module.exports = { createDeliveryNote, getDeliveryNotes, getDeliveryNoteById, generateDeliveryNotePDF, signDeliveryNote, deleteDeliveryNote };
