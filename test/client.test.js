@@ -2,11 +2,11 @@ const request = require('supertest');
 const app = require('../app');
 const mongoose = require('mongoose');
 const User = require('../models/User');
-const Client = require('../models/Client');
 
 let token = '';
 let clientId = '';
 let testEmail = `test_client_${Date.now()}@mail.com`;
+let dynamicCIF = `B${Math.floor(10000000 + Math.random() * 90000000)}`; // CIF único
 
 beforeAll(async () => {
   const register = await request(app)
@@ -34,7 +34,7 @@ describe('Client Endpoints', () => {
       .set('Authorization', `Bearer ${token}`)
       .send({
         name: 'Cliente Test',
-        cif: 'B12345678',
+        cif: dynamicCIF,
         address: {
           street: 'Calle Sol',
           number: 12,
@@ -43,6 +43,8 @@ describe('Client Endpoints', () => {
           province: 'Madrid'
         }
       });
+
+    console.log('Cliente creado:', res.body); // Debug
 
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty('_id');
@@ -75,7 +77,7 @@ describe('Client Endpoints', () => {
       .set('Authorization', `Bearer ${token}`)
       .send({
         name: 'Cliente Modificado',
-        cif: 'B12345678',
+        cif: dynamicCIF,
         address: {
           street: 'Nueva Calle',
           number: 99,
@@ -99,12 +101,14 @@ describe('Client Endpoints', () => {
   });
 
   it('debería eliminar el cliente (hard delete)', async () => {
+    const newCif = `Z${Math.floor(10000000 + Math.random() * 90000000)}`;
+
     const newClient = await request(app)
       .post('/api/client')
       .set('Authorization', `Bearer ${token}`)
       .send({
         name: 'Cliente Hard Delete',
-        cif: 'Z12345678'
+        cif: newCif
       });
 
     const idToDelete = newClient.body._id;

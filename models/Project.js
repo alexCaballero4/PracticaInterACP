@@ -4,7 +4,7 @@ const projectSchema = new mongoose.Schema({
     name: { type: String, required: true },
     projectCode: { type: String, required: true },
     email: { type: String },
-    code: { type: String }, // Código interno del proyecto
+    code: { type: String },
     clientId: { type: mongoose.Schema.Types.ObjectId, ref: 'Client', required: true },
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     address: {
