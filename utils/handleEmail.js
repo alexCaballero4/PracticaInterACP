@@ -39,6 +39,10 @@ const createTransporter = async () => {
 };
 
 const sendEmail = async ({ to, subject, text, from }) => {
+    if (process.env.NODE_ENV === 'test') {
+        console.log('[TEST MODE] Email simulado:', { from, to, subject, text });
+        return;
+    }
     const emailOptions = {
         from,
         to,
