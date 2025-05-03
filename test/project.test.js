@@ -53,9 +53,9 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await User.deleteOne({ email: testEmail });
-  await Client.deleteOne({ _id: clientId });
   await Project.deleteMany({});
+  await Client.deleteMany({});
+  await User.deleteMany({ email: testEmail });
   await mongoose.connection.close();
 });
 

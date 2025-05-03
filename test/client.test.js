@@ -2,11 +2,12 @@ const request = require('supertest');
 const app = require('../app');
 const mongoose = require('mongoose');
 const User = require('../models/User');
+const Client = require('../models/Client');
 
 let token = '';
 let clientId = '';
-let testEmail = `test_client_${Date.now()}@mail.com`;
-let dynamicCIF = `B${Math.floor(10000000 + Math.random() * 90000000)}`; // CIF único
+const testEmail = `test_client_${Date.now()}@mail.com`;
+const dynamicCIF = `B${Math.floor(10000000 + Math.random() * 90000000)}`;
 
 beforeAll(async () => {
   const register = await request(app)
@@ -16,6 +17,7 @@ beforeAll(async () => {
   token = register.body.token;
 
   const user = await User.findById(register.body.user._id);
+
   await request(app)
     .post('/api/user/validation')
     .set('Authorization', `Bearer ${token}`)
@@ -23,7 +25,8 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await User.deleteOne({ email: testEmail });
+  await Client.deleteMany({});
+  await User.deleteMany({ email: testEmail });
   await mongoose.connection.close();
 });
 
@@ -40,11 +43,9 @@ describe('Client Endpoints', () => {
           number: 12,
           postal: 28080,
           city: 'Madrid',
-          province: 'Madrid'
-        }
+          province: 'Madrid',
+        },
       });
-
-    console.log('Cliente creado:', res.body); // Debug
 
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty('_id');
@@ -83,8 +84,8 @@ describe('Client Endpoints', () => {
           number: 99,
           postal: 28085,
           city: 'Getafe',
-          province: 'Madrid'
-        }
+          province: 'Madrid',
+        },
       });
 
     expect(res.statusCode).toBe(200);
@@ -108,7 +109,7 @@ describe('Client Endpoints', () => {
       .set('Authorization', `Bearer ${token}`)
       .send({
         name: 'Cliente Hard Delete',
-        cif: newCif
+        cif: newCif,
       });
 
     const idToDelete = newClient.body._id;

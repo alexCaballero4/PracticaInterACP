@@ -5,7 +5,6 @@ const User = require('../models/User');
 
 let token = '';
 let testEmail = `test${Date.now()}@mail.com`;
-let testCode = '';
 let userId = '';
 
 beforeAll(async () => {
@@ -17,16 +16,15 @@ beforeAll(async () => {
   userId = registerRes.body.user._id;
 
   const user = await User.findById(userId);
-  testCode = user.code;
 
   await request(app)
     .post('/api/user/validation')
     .set('Authorization', `Bearer ${token}`)
-    .send({ code: testCode });
+    .send({ code: user.code });
 });
 
 afterAll(async () => {
-  await User.deleteOne({ email: testEmail });
+  await User.deleteMany({ email: testEmail });
   await mongoose.connection.close();
 });
 
@@ -38,7 +36,7 @@ describe('User Endpoints', () => {
       .send({
         nombre: 'Juan',
         apellidos: 'Pérez',
-        nif: '12345678A'
+        nif: '12345678A',
       });
 
     expect(res.statusCode).toBe(200);
@@ -55,7 +53,7 @@ describe('User Endpoints', () => {
         postal: 28001,
         city: 'Madrid',
         province: 'Madrid',
-        esAutonomo: true
+        esAutonomo: true,
       });
 
     expect(res.statusCode).toBe(200);
@@ -96,19 +94,18 @@ describe('User Endpoints', () => {
       .post('/api/user/register')
       .send({
         email: `harddelete${Date.now()}@mail.com`,
-        password: 'harddelete123'
+        password: 'harddelete123',
       });
 
     const hardDeleteToken = resRegister.body.token;
     const hardDeleteId = resRegister.body.user._id;
 
     const user = await User.findById(hardDeleteId);
-    const code = user.code;
 
     await request(app)
       .post('/api/user/validation')
       .set('Authorization', `Bearer ${hardDeleteToken}`)
-      .send({ code });
+      .send({ code: user.code });
 
     const resDelete = await request(app)
       .delete('/api/user?soft=false')

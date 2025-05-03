@@ -44,7 +44,6 @@ beforeAll(async () => {
             }
         });
 
-    console.log('clientRes.body:', clientRes.body);
     client = clientRes.body.client || clientRes.body;
     expect(client).toBeDefined();
     expect(client._id).toBeDefined();
@@ -71,7 +70,6 @@ beforeAll(async () => {
     expect(project).toBeDefined();
     expect(project._id).toBeDefined();
 
-    // ⚠️ Creamos el albarán principal aquí y guardamos su ID globalmente
     const deliveryRes = await request(app)
         .post('/api/deliverynote')
         .set('Authorization', `Bearer ${token}`)
@@ -86,7 +84,6 @@ beforeAll(async () => {
 
     expect(deliveryRes.statusCode).toBe(200);
     deliveryNoteId = deliveryRes.body._id;
-    console.log('Albarán creado y guardado con ID:', deliveryNoteId);
 });
 
 afterAll(async () => {
