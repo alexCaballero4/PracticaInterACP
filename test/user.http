@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTRhYTRkMjNlNTMzNDllYmNiZDYwMiIsImVtYWlsIjoibmVnZXRpNDYyNEBiZW56bm9pLmNvbSIsImlhdCI6MTc0NjE4NTM1NiwiZXhwIjoxNzQ2MTg4OTU2fQ.mzb5uclKMu0gG8NKZrkG5Vr9vEyD7A2MxXa9nzhsj8I
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTRhYTRkMjNlNTMzNDllYmNiZDYwMiIsImVtYWlsIjoibmVnZXRpNDYyNEBiZW56bm9pLmNvbSIsImlhdCI6MTc0NjI3NDAzNCwiZXhwIjoxNzQ2Mjc3NjM0fQ.ojIaeOSS0AEZOgFrqZpJaAHn71XlDYA5OJ020sH5LK8
 
 GET http://localhost:3000/api
 
@@ -7,7 +7,7 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-  "email": "negeti4624@benznoi.com",
+  "email": "prueba124@gmail.com",
   "password": "contraseña123"
 }
 

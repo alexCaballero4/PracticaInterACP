@@ -3,7 +3,6 @@ const router = express.Router();
 
 const authRoutes = require('./auth');
 const userRoutes = require('./user');
-const storageRoutes = require('./storage');
 const clientRoutes = require('./client');
 const projectRoutes = require('./project');
 const deliveryNoteRoutes = require('./deliveryNote');
@@ -14,7 +13,6 @@ router.get('/', (req, res) => {
 
 router.use('/user', authRoutes);
 router.use('/user', userRoutes);
-router.use('/user', storageRoutes);
 router.use('/client', clientRoutes);
 router.use('/project', projectRoutes);
 router.use('/deliverynote', deliveryNoteRoutes);

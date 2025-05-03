@@ -92,7 +92,6 @@ describe('User Endpoints', () => {
   });
 
   it('debería eliminar permanentemente al usuario (hard delete)', async () => {
-    // Primero creamos un usuario nuevo solo para este test
     const resRegister = await request(app)
       .post('/api/user/register')
       .send({
@@ -111,7 +110,6 @@ describe('User Endpoints', () => {
       .set('Authorization', `Bearer ${hardDeleteToken}`)
       .send({ code });
 
-    // Ahora hacemos hard delete
     const resDelete = await request(app)
       .delete('/api/user?soft=false')
       .set('Authorization', `Bearer ${hardDeleteToken}`);

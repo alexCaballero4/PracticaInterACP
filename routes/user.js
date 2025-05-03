@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const { updateProfile, updateCompany, getUser, deleteUser } = require('../controllers/user');
+const { updateProfile, updateCompany, getUser, deleteUser, updateLogo } = require('../controllers/user');
 const { personalDataValidator, companyDataValidator } = require('../validators/user');
 const authMiddleware = require('../middleware/authMiddleware');
+const { uploadMiddlewareMemory } = require('../middleware/storageMiddleware');
 
 /**
  * @openapi
@@ -184,5 +185,38 @@ router.get('/', authMiddleware, getUser);
  *         description: Usuario no encontrado
  */
 router.delete('/', authMiddleware, deleteUser);
+
+/**
+ * @openapi
+ * /user/logo:
+ *   patch:
+ *     summary: Sube o actualiza el logo del usuario
+ *     tags:
+ *       - User
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - logo
+ *             properties:
+ *               logo:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: Logo actualizado correctamente
+ *       401:
+ *         description: Token no proporcionado o inválido
+ *       400:
+ *         description: No se ha proporcionado ningún archivo
+ *       500:
+ *         description: Error interno del servidor
+ */
+router.patch('/logo', authMiddleware, uploadMiddlewareMemory.single('logo'), updateLogo);
 
 module.exports = router;
