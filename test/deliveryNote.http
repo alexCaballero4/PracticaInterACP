@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmY4Mzc5ZWEyMjdhYzVkZWVhNmU2NyIsImVtYWlsIjoicHJ1ZWJhMTBAZ21haWwuY29tIiwiaWF0IjoxNzQ2MTgyODgyLCJleHAiOjE3NDYxODY0ODJ9._x-6xQkBVS4ScmjYxUrRspd4zl5tHFsQxKNqvBMfMO0
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTRhYTRkMjNlNTMzNDllYmNiZDYwMiIsImVtYWlsIjoibmVnZXRpNDYyNEBiZW56bm9pLmNvbSIsImlhdCI6MTc0NjI5NzUzMiwiZXhwIjoxNzQ2MzAxMTMyfQ.fT7utGSoNQgAzeQkvWhqC1DxTrGpIen3fOh_ylxFsow
 
 ### Crear albaran tipo horas
 POST http://localhost:3000/api/deliverynote
@@ -7,10 +7,10 @@ Content-Type: application/json
 
 {
   "clientId": "6814acd123e53349ebcbd615",
-  "projectId": "6814ad4923e53349ebcbd619",
+  "projectId": "6814aa4d23e53349ebcbd602",
   "format": "hours",
-  "hours": 15,
-  "description": "Cambio de Cristales",
+  "hours": 4,
+  "description": "Prueba de horas",
   "workdate": "02/05/2025"
 }
 

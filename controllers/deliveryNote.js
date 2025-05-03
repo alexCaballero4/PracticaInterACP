@@ -8,6 +8,8 @@ const path = require('path');
 const PDFDocument = require('pdfkit');
 
 const createDeliveryNote = async (req, res) => {
+    console.log('BODY DEL POST:', req.body);
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) return handleHttpError(res, 'Error de validación', 422);
 
