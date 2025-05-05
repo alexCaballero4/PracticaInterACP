@@ -93,4 +93,59 @@ describe('Auth Endpoints', () => {
         expect(res.body).toHaveProperty('token');
         expect(res.body.user).toHaveProperty('email', testEmail);
     });
+
+    it('debería fallar al registrar sin contraseña', async () => {
+        const res = await request(app)
+            .post('/api/user/register')
+            .send({ email: `fail${Date.now()}@mail.com` });
+
+        expect(res.statusCode).toBe(400);
+    });
+
+    it('debería fallar al validar con código incorrecto', async () => {
+        const res = await request(app)
+            .post('/api/user/validation')
+            .set('Authorization', `Bearer ${token}`)
+            .send({ code: '999999' });
+
+        expect(res.statusCode).toBe(422);
+    });
+
+    it('debería fallar al hacer login con contraseña incorrecta', async () => {
+        const res = await request(app)
+            .post('/api/user/login')
+            .send({
+                email: testEmail,
+                password: 'contraseña_mal'
+            });
+
+        expect(res.statusCode).toBe(401);
+    });
+
+    it('debería fallar al recuperar contraseña con email no existente', async () => {
+        const res = await request(app)
+            .post('/api/user/recover')
+            .send({ email: 'inexistente@mail.com' });
+
+        expect(res.statusCode).toBe(404);
+    });
+
+    it('debería fallar al cambiar contraseña con código incorrecto', async () => {
+        const res = await request(app)
+            .patch('/api/user/password')
+            .send({
+                email: testEmail,
+                code: '000000',
+                password: 'loquesea123'
+            });
+
+        expect(res.statusCode).toBe(422);
+    });
+
+    it('debería fallar al acceder al perfil sin token', async () => {
+        const res = await request(app)
+            .get('/api/user');
+
+        expect(res.statusCode).toBe(401);
+    });
 });

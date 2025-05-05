@@ -117,4 +117,43 @@ describe('User Endpoints', () => {
     const deletedUser = await User.findById(hardDeleteId);
     expect(deletedUser).toBeNull();
   });
+
+  it('debería fallar al completar datos personales sin token', async () => {
+    const res = await request(app)
+      .put('/api/user/register')
+      .send({
+        nombre: 'SinToken',
+        apellidos: 'Error',
+        nif: '00000000X',
+      });
+
+    expect(res.statusCode).toBe(401);
+  });
+
+  it('debería fallar al completar datos personales sin NIF', async () => {
+    const res = await request(app)
+      .put('/api/user/register')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        nombre: 'FaltaNIF',
+        apellidos: 'Error'
+      });
+
+    expect(res.statusCode).toBe(400);
+  });
+
+  it('debería fallar al acceder al perfil sin token', async () => {
+    const res = await request(app)
+      .get('/api/user');
+
+    expect(res.statusCode).toBe(401);
+  });
+
+  it('debería fallar al subir logo sin archivo', async () => {
+    const res = await request(app)
+      .patch('/api/user/logo')
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(res.statusCode).toBe(400);
+  });
 });

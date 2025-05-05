@@ -121,4 +121,52 @@ describe('Client Endpoints', () => {
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty('message');
   });
+
+  it('debería fallar al crear un cliente sin nombre', async () => {
+    const res = await request(app)
+      .post('/api/client')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        cif: `B${Math.floor(10000000 + Math.random() * 90000000)}`,
+        address: {
+          street: 'Calle Faltante',
+          number: 1,
+          postal: 28000,
+          city: 'Madrid',
+          province: 'Madrid',
+        },
+      });
+
+    expect(res.statusCode).toBe(422);
+  });
+
+  it('debería fallar al crear cliente sin token', async () => {
+    const res = await request(app)
+      .post('/api/client')
+      .send({
+        name: 'Cliente Sin Token',
+        cif: `B${Math.floor(10000000 + Math.random() * 90000000)}`,
+      });
+
+    expect(res.statusCode).toBe(401);
+  });
+
+  it('debería fallar al crear cliente con CIF repetido', async () => {
+    const res = await request(app)
+      .post('/api/client')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        name: 'Cliente Duplicado',
+        cif: dynamicCIF,
+        address: {
+          street: 'Calle Repetida',
+          number: 2,
+          postal: 28000,
+          city: 'Madrid',
+          province: 'Madrid',
+        },
+      });
+
+    expect(res.statusCode).toBe(409);
+  });
 });
