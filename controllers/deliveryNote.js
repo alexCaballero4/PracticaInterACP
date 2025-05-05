@@ -114,7 +114,7 @@ const generateDeliveryNotePDF = async (req, res) => {
 
         const doc = new PDFDocument();
         const stream = process.env.NODE_ENV === 'test'
-            ? require('stream').Writable({ write() { } }) // No guarda archivo
+            ? require('stream').Writable({ write() { } })
             : fs.createWriteStream(pdfPath);
 
         doc.pipe(stream);
